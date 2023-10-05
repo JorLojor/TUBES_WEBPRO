@@ -1,0 +1,8 @@
+.container-intro-lp{
+    width: 100vh;
+    height: 100%;
+    background-color: aqua;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}

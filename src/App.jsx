@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import LandingPage from './components/LandingPage/LandingPage'; // Fix casing issue
+import LandingPage from './pages/LandingPage/LandingPage'; // Fix casing issue
+import LoginPage from './pages/LoginPage/LoginPage';
 
 function App() {
 
@@ -8,6 +9,7 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<LandingPage />} />
+                    <Route path="/login" element={<LoginPage />} />
                 </Routes>
             </BrowserRouter>
         </>
