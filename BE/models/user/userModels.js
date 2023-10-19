@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const SchemaPenanamModal = require('./UserPenanamModal')
+const SchemaPenanamModal = require('./UserPenanamModal');
+const SchemaPinjamModal = require('./UserPinjamModal');
 const Schema = mongoose.Schema;
 
 const userModel = new Schema({
@@ -11,7 +12,7 @@ const userModel = new Schema({
     statusUser: { type: String, required: false },
     phone: { type: String, required: false },
     tanam_modal: SchemaPenanamModal,
-    pinjam_modal: { type: mongoose.Schema.Types.ObjectId, ref: 'PeminjamModal' },
+    pinjam_modal: SchemaPinjamModal,
 }, {timestamps: true, collection: 'users'});
 
 const User = mongoose.model('User', userModel);
