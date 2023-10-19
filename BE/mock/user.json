@@ -1,0 +1,73 @@
+[
+    {
+        "name": "georgehanif",
+        "password": "123456",
+        "age": 20,
+        "email": "george123hanif@gmail.com"
+    },
+    
+    {
+        "name": "geonanda",
+        "password":"123456",
+        "age": 19,
+        "email": "geonanda@gmail.com"
+    },
+    
+    {
+        "name": "rama",
+        "password":"123456",
+        "age": 21,
+        "email": "rama@gmail.com"
+    },
+    {
+        "name": "haniffikri",
+        "password":"123456",
+        "age": 20,
+        "email": "haniffikri@gmail.com"
+    },
+    {
+        "name": "putrie",
+        "password":"123456",
+        "age": 23,
+        "email": "putrie@gmail.com"
+    },
+    {
+        "name" : "nao",
+        "password" : "123456",
+        "age" : 19,
+        "email" : "nao@gmail.com"
+    },
+    {
+        "name" : "aryo",
+        "password" : "123456",
+        "age" : 20,
+        "email" : "aryo@gmail.com"
+    },
+    {
+        "name" : "wildan",
+        "password" : "123456",
+        "age" : 20,
+        "email" : "wildan@gmail.com"
+    },
+    {
+        "name" : "rassel",
+        "password" : "123456",
+        "age" : 20,
+        "email" : "rassel@gmail.com"
+    },
+    {
+        "name" : "afasyah",
+        "password" : "123456",
+        "age" : 20,
+        "email" : "afasyah@gmail.com"
+    },
+    {
+        "name" : "iqbal",
+        "password" : "123456",
+        "age" : 22,
+        "email" : "iqbal@gmail.com"
+    }
+
+    
+    
+]

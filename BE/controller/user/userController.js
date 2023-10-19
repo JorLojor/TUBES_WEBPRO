@@ -19,8 +19,14 @@ exports.getAllUser = async (req, res) => {
         // .populate('tanam_modal')
         // .populate('pinjam_modal')
         .exec();
+        const dataResponse = {
+            dataUser: dataUser,
+            total_page: total_page,
+            page: page,
+            limit: limit
+        }
 
-        responseSuccess(res,dataUser,200,"Success get all user !")
+        responseSuccess(res,dataResponse,200,"Success get all user !")
     }catch(error){
         responseError(res,error)
     }
@@ -52,7 +58,6 @@ exports.registerUser = async (req, res) => {
             password: HashPassword,
             age: age,
             email: email,
-            role: role
         });
         responseSuccess(res, 200, 'Success register user ! \t\n', dataUser)
     }catch(error){
@@ -60,4 +65,23 @@ exports.registerUser = async (req, res) => {
     }
 }
 
+exports.loginUser = async (req, res) => {
+    try{
+        const {name,password} = req.body;
+        const dataUser = await db.user.findOne({name: name});
+        if(!dataUser){
+            responseError(res, 400, 'User tidak ditemukan ! \t\n', 'masukkan name yang benar \t\n');
+            return ;
+        }
+        const cekPassword = await bcrypt.compare(password, dataUser.password);
+        if(!cekPassword){
+            responseError(res, 400, 'Password salah ! \t\n', 'masukkan password yang benar \t\n');
+            return ;
+        }
+        const token = jwt.sign({id: dataUser._id}, process.env.JWT_SECRET, {expiresIn: '1h'});
+        responseSuccess(res, 200, 'Success login user ! \t\n', {token: token})
+    }catch(error){
+        responseError(res, 500, 'Internal server error ! \t\n', error.message)
+    }
+}
 module.exports = exports;
