@@ -1,9 +1,10 @@
-function sendSuccessResponse(res, data, message = 'Request berhasil', status = 200) {
-    res.status(status).json({
+function sendSuccessResponse(res, data, status = 200,message) {
+    res.json({
         success: true,
+        status: status,
         message: message,
         data: data,
-    });
+    })
 }
 
 module.exports = sendSuccessResponse;

@@ -1,10 +1,9 @@
-function sendErrorResponse(res, error, message = 'Terjadi kesalahan', status = 500) {
-    res.status(status).json({
+function sendErrorResponse(res, error,) {
+    res.status(500).json({
         success: false,
-        message: message,
-        error: error,
+        message: error.message,
+        data: null,
     });
 }
 
 module.exports = sendErrorResponse;
-  

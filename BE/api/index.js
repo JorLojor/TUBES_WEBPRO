@@ -6,7 +6,7 @@ const userRouter = require('./userRouter');
 
 
 router.get('/', (req, res) => {
-    res.send('Hello World!');
+    res.send('----------- API -----------');
 });
 
 router.use('/users', userRouter);
