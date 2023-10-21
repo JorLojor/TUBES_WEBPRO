@@ -1,105 +1,114 @@
 db = require ('../../models/index')
 const responseSuccess = require('../../res/responseSucces')
 const responseError = require('../../res/responseError');
-const { user, penanam } = require('../../models/index');
+const { user } = require('../../models/index');
 
 exports.calculatePinjaman = async (req, res) => {
-    
-
-
-    // cari peminjam
-    
-    try{
+    try {
         const IdUser = req.params.id;
-        const {uang_pinjaman} = req.body; // 100000 
-        const Uang_dipinjam = 0;
-        // cari yang meminjam
-        const yangMeminjam = await db.user.findById(IdUser); //rey
+        let  uang_pinjaman  = req.body.uang_pinjaman;
+        let Uang_dipinjam = 0;
+        const yangMeminjam = await db.user.findById(IdUser); //user yang meminjam
+
+        if (!yangMeminjam) {
+            responseError(res, 'Peminjam tidak ditemukan.', 404);
+            return;
+        }
 
         const query = {
             'tanam_modal': { $exists: true }
         };
-        const UserWithTanamModal = [];// array of userPeminjam
-        const DataUserTanamModal = await db.user.find(query); // udah dapet data yang punya modal
-        DataUserTanamModal.forEach(User => {
-            UserWithTanamModal.push(User);
-        });
-        UserWithTanamModal.forEach(User => {
-            // User adalah yang punya modal
-            if(User.tanam_modal.uang_modal >= uang_pinjaman && User.tanam_modal.uang_modal != 0 ){
-                //kita hasur membatasi sistem agar tidak terjadi pinjaman yang berlebihan dari user yang menanam modal
-                Uang_dipinjam += User.tanam_modal.max_pinjam;
-                uang_pinjaman -= User.tanam_modal.max_pinjam;
-
-                // uang_modal yang ada di user harus berkurang sesuai dengan max_pinjam
-                User.tanam_modal.uang_modal -= User.tanam_modal.max_pinjam;
-                // memsaukkan peminjam ke array yangMeminjam
-                User.tanam_modal.yangMeminjam.push(yangMeminjam._id);
-                // update user penanam dimana uang_modal berkurang dan yangMeminjam bertambah
-                const UpdatePenanam = db.user.findByIdAndUpdate(User._id,{
-                    $set:{
-                        uang_modal: User.tanam_modal.uang_modal,
-                        yangMeminjam: User.tanam_modal.yangMeminjam
-                    }
-                },{new:true}).then(data => {
-                    console.log(data);
-                }).catch(err => {
-                    console.log(err);
-                });
-                
-                // update user peminjam dimana total_pinjaman bertambah dan menambahkan id penanam ke array penanam
-                const UpdatePeminjam = db.user.findByIdAndUpdate(yangMeminjam._id,{
-                    $set:{
-                        pinjam_modal:{
-                            total_pinjaman: Uang_dipinjam,
-                            penanam: push(User._id)
+        const DataUserTanamModal = await db.user.find(query); //user yang memberi pinjaman
+        for (let i = 0; i < DataUserTanamModal.length; i++) {
+            const UserTanamModalData = DataUserTanamModal[i];
+                if(UserTanamModalData.tanam_modal.uang_modal >= uang_pinjaman && UserTanamModalData.tanam_modal.uang_modal !== 0 && uang_pinjaman !== 0){
+        
+                    Uang_dipinjam += UserTanamModalData.tanam_modal.max_pinjam;
+                    await db.user.findByIdAndUpdate(yangMeminjam._id,{
+                        $push:{
+                            'pinjam_modal.penanam': UserTanamModalData._id
+                        },
+                        $set:{
+                            'pinjam_modal.total_pinjam': yangMeminjam.pinjam_modal.total_pinjam + UserTanamModalData.tanam_modal.max_pinjam
                         }
-                    }
-                },{new:true}).then(data => {
-                    console.log(data);
-                }).catch(err => {
-                    console.log(err);
-                })
+                    })
+                    uang_pinjaman -= UserTanamModalData.tanam_modal.max_pinjam;
+                    console.log("----------------------------------");
+                    console.log(yangMeminjam, "meminjam dari \n ", UserTanamModalData);
+                    console.log(uang_pinjaman)
+                    console.log(Uang_dipinjam)
+                    console.log("----------------------------------");
+                    
+                    await db.user.findByIdAndUpdate(UserTanamModalData._id,{
+                        $set:{
+                            'tanam_modal.uang_modal': UserTanamModalData.tanam_modal.uang_modal - UserTanamModalData.tanam_modal.max_pinjam,
+                        },
+                        $push:{
+                            'tanam_modal.yangMeminjam': yangMeminjam._id
+                        }
+                    });
+                }
+                
+                responseSuccess(res, yangMeminjam, 200, "Success calculate pinjaman!");
+        }
+    } catch (error) {
+        responseError(res, error);
+    }
+};
+
+exports.pinjamUang = async (req, res) => {
+    try {
+        const userId = req.params.id;
+        const uangPinjaman = req.body.uang_pinjaman;
+        let totalPinjaman = 0;
+        const peminjam = await db.user.findById(userId);
+
+        if (!peminjam) {
+            responseError(res, 'Peminjam tidak ditemukan.', 404);
+            return;
+        }
+
+        // Ambil semua user penanam yang memiliki modal
+        const penanamModalUsers = await db.user.find({ 'tanam_modal.uang_modal': { $gt: 0 } });
+
+        // Looping untuk meminjam uang dari user penanam
+        for (const penanam of penanamModalUsers) {
+            if (totalPinjaman >= uangPinjaman) {
+                break; // Jika uangPinjaman sudah mencapai batas, hentikan looping
             }
 
-        })
-        // console.log(UserWithTanamModal);
+            const uangModalPenanam = penanam.tanam_modal.uang_modal;
+            const maxPinjamanPenanam = penanam.tanam_modal.max_pinjam;
 
+            if (uangModalPenanam >= maxPinjamanPenanam) {
+                // Jika penanam memiliki modal yang cukup
+                const pinjaman = Math.min(maxPinjamanPenanam, uangPinjaman - totalPinjaman);
 
+                // Kurangi uang modal penanam dan tambahkan pinjam ke peminjam
+                penanam.tanam_modal.uang_modal -= pinjaman;
+                penanam.tanam_modal.yangMeminjam.push(peminjam._id);
 
-        // const DataUserTanamModal = await db.user.find(query); // udah dapet data yang punya modal
-        // //peminjam =  yang ngasih pinjaman
-        // DataUserTanamModal.forEach(Peminjam => {
-        //     if(Peminjam.tanam_modal.uang_modal >= uang_pinjaman && Peminjam.tanam_modal.uang_modal != 0 ){
-        //         //kita hasur membatasi sistem agar tidak terjadi pinjaman yang berlebihan dari user yang menanam modal
-        //         const uang_modal = Peminjam.tanam_modal.uang_modal;
-        //         const max_pinjam = Peminjam.tanam_modal.max_pinjam;
-                
+                // Tambahkan pinjaman ke peminjam
+                peminjam.pinjam_modal.total_pinjam += pinjaman;
+                peminjam.pinjam_modal.penanam.push(penanam._id);
 
-        //         const UangDipinjam = 0; //define uang di pinjem yang nanti akan di 
-        //         if(uang_pinjaman != 0){     
-        //             const PeminjamCalculated = db.user.findByIdAndUpdate(Peminjam._id,{
-        //                 $set:{
-        //                     uang_modal: uang_modal - max_pinjam,
-        //                     // memsaukkan peminjam ke array peminjam
-        //                     peminjam: push(yangMeminjam._id)
-        //                 }
-        //             });
-        //             UserWithTanamModal.push(PeminjamCalculated);
-        //             uang_pinjaman -= PeminjamCalculated.tanam_modal.max_pinjam;
-        //             UangDipinjam += PeminjamCalculated.tanam_modal.max_pinjam;
-        //         }
+                // Tambahkan statusPinjam ke peminjam
+                peminjam.pinjam_modal.statusPinjam = 'belumselesai';
 
-    
-    
-        //     }
-        // });
+                // Update kedua user
+                await penanam.save();
+                await peminjam.save();
 
-    }catch(error){
-        responseError(res,error)
+                totalPinjaman += pinjaman;
+            }
+        }
+
+        responseSuccess(res, 'Peminjaman sukses', 200);
+    } catch (error) {
+        responseError(res, error);
     }
-
 };
+
 
 exports.getAllPinjaman = async (req, res) => {};
 
@@ -118,3 +127,33 @@ exports.deletePinjaman = async (req, res) => {};
                 //     }
                 // });
                 // PeminjamCalculated.tanam_modal.uang_modal -= uang_pinjaman;
+
+
+
+module.exports = exports;
+
+
+
+ // const UserWithTanamModal = [];
+
+        // for (const User of DataUserTanamModal) {
+        //     if (User.tanam_modal.uang_modal >= uang_pinjaman && User.tanam_modal.uang_modal !== 0) {
+        //         Uang_dipinjam += User.tanam_modal.max_pinjam;
+        //         uang_pinjaman -= User.tanam_modal.max_pinjam;
+
+        //         User.tanam_modal.uang_modal -= User.tanam_modal.max_pinjam;
+        //         User.tanam_modal.peminjam.push(yangMeminjam._id);
+
+        //         // Simpan perubahan pada User penanam
+        //         await User.save();
+
+        //         // Update peminjam dengan total_pinjaman dan penanam
+        //         yangMeminjam.pinjam_modal.total_pinjaman += Uang_dipinjam;
+        //         yangMeminjam.pinjam_modal.penanam.push(User._id);
+
+        //         // Simpan perubahan pada yangMeminjam
+        //         await yangMeminjam.save();
+        //     }
+        // }
+
+        // responseSuccess(res, null, 200, "Success calculate pinjaman!");

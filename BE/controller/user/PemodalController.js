@@ -4,42 +4,30 @@ const responseError = require('../../res/responseError');
 const { user } = require('../../models/index');
 
 exports.addModal = async (req, res) => {
-    try{
-        const Id_calon_peminjam = req.params.id;
-        const {uang_modal,max_pinjam} = parseInt(req.body);
-        const uang_menetap = 200000;
-        uang_modal -= uang_menetap;
-        const User = await db.user.findById(Id_calon_peminjam);
-        if(!User){
-            responseError(res, 400, 'User tidak ada ! \t\n', 'masukkan user lain \t\n');
-            return ;
-        }
-        if(User.role !== 'peminjam'){
-            responseError(res, 400, 'anda dalam masa peminjaman !');
-            return ;
-        }
-        if(uang_modal < 200000){
-            responseError(res, 400, 'uang modal minimal 200000 !');
-            return ;
-        }
+    try {
+        const Id_calon_pemodal = req.params.id;
+        const { uang_modal, max_pinjam } = req.body;
+        const uang_menetap = 20000;
 
-        const dataUser = await db.user.findByIdAndUpdate(Id_calon_peminjam,{
-            $set:{
-                tanam_modal:{
-                    uang_menetap:uang_menetap,
-                    uang_modal:uang_modal,
-                    max_pinjam:max_pinjam
-                }
+        const uang_modal_setelah_pengurangan = uang_modal - uang_menetap;
+
+        const dataUser = await db.user.findByIdAndUpdate(Id_calon_pemodal, {
+            $set: {
+                tanam_modal: {
+                    uang_menetap : uang_menetap,
+                    uang_modal : uang_modal_setelah_pengurangan,
+                    max_pinjam,
+                },
             },
-            role:'penanam'
-        },{new:true});
+            role: 'penanam',
+        }, { new: true });
 
-        responseSuccess(res,dataUser,200,"Success add modal !")
-        
-    }catch(error){
-        responseError(res,error)
+        responseSuccess(res, dataUser, 200, "Success add modal!");
+    } catch (error) {
+       responseError(res, error);
     }
 };
+
 
 exports.withdraw = async (req, res) => {
     try{

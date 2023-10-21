@@ -16,8 +16,6 @@ exports.getAllUser = async (req, res) => {
         const dataUser = await db.user.find()
         .skip(offset)
         .limit(limit)
-        .populate('tanam_modal')
-        .populate('pinjam_modal')
         .exec();
 
         const data = {
