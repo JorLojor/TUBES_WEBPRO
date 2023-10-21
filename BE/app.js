@@ -23,7 +23,6 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
 
-
 // api
 app.use('/api', api)
 // api
