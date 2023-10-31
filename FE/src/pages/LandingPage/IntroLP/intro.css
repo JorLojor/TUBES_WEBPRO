@@ -2,6 +2,33 @@
     margin-left: 160px !important;
     margin-right:160px !important;
 }
+span{
+    color: #3252DF;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 170%; 
+}
+li{
+    list-style: none;
+    color: #A1A1A3;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+li h3{
+    color: #FFF;
+
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
 button{
     outline: none;
     border: none;
@@ -130,6 +157,7 @@ button{
 .cover-features-title{
     display: block;
     text-align: center;
+    line-height: 20px;
 }
 .cover-content-features{
     justify-content:space-between;
@@ -162,4 +190,58 @@ button{
 .set-data-per-features{
     padding-left: 10px;
     padding-right: 35px;
+}
+
+.image-content-features{
+    background-image: url(../../../assets/kapal.jpeg);
+    height: 50%;
+    position: relative;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+}
+.text-image-content{
+    position: absolute;
+    top: 133px;
+    width: 335px;
+    height: 46px;
+    flex-shrink: 0;
+    background-color: rgba(21, 44, 91, 0.60);
+    color: #FAFAFA;
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 170%;
+    padding-left: 10px;
+    padding-top: 6px;
+}
+.set-pecents{
+    color: #6C6767;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 170%;
+}
+.set-price{
+    color: #1E1E1E;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 170%;
+}
+.view-more-button{
+    display: inline-flex;
+    padding: 14px 24px;
+    align-items: flex-start;
+    gap: 10px;
+    border-radius: 100px;
+    border: 1.5px solid #7B7B7B;
+    color: #7B7B7B;
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
 }
