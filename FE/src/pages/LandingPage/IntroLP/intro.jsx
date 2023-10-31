@@ -1,6 +1,7 @@
 import './intro.css';
 import gambar from '../../../assets/image-intro-lp.png';
 
+
 const IntroLP = () => {
 
     return(
@@ -68,17 +69,17 @@ const IntroLP = () => {
                 <div className="set-row set-row-trird">
                    <div className="row justify-content-between pe-5">
                         <div className="col-1 set-categori-textt">Category</div>
-                        <div className="col-1 set-more-textt">More</div>
+                        
                    </div>
                    <div className="row justify-content-between set-inner-row">
-                        <div className="col-3 text-discover ">
+                        <div className="col-4 text-discover ">
                             Discover Project <br/>
                             By Category
                         </div>
-                        <div className="col-6">
+                        <div className="col-8">
                             <div className="row  justify-content-between">
 
-                                <div className="col-3 ">
+                                <div className="col-3  ">
                                     <div className="box-content-discover">
                                         
                                     </div>
@@ -88,7 +89,7 @@ const IntroLP = () => {
                                         
                                     </div>
                                 </div>
-                                <div className="col-3 ">
+                                <div className="col-3">
                                     <div className="box-content-discover">
                                         
                                     </div>
@@ -100,20 +101,69 @@ const IntroLP = () => {
                     
                    </div>
                 </div>
+                <div className="set-row set-row-four">
+
+                    <div className="cover-features-title">
+                        <p>Featured</p>
+                        <h1>Featured Project</h1>
+                        <p>We are a crowdfunding company founded to help startups
+                            who want to start their<br/> business to accelerate their
+                            achievements
+                        </p>
+                    </div>
+                    <div className="row justify-content-between">
+                        <div className="col-12 col-md-3  ">
+
+                            <div className="box-content-features">
+                                <div className="image-content-features" style={{backgroundImage: `url(${gambar})`}}>
+
+                                    <div className="row text-image-content">
+                                        test test test
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    
+                                    <div className="col-12">
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, totam.
+                                    </div>
+
+                                    <div className="col-12">
+                                        <div className="outer-bar-features">
+                                            <div className="inner-bar-features"></div>
+                                        </div>
+                                    </div>
+
+                                    <div className="col-11">
+                                        <div className="row justify-content-between set-data-per-features">
+                                            <div className="col-2 text-start"> 75% </div>
+                                            <div className="col-2 text-end"> $1000.000</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div className="col-12 col-md-3 ">
+                            <div className="box-content-features">
+                                    p
+                                </div>
+                        </div>
+                        <div className="col-12 col-md-3 ">
+                            <div className="box-content-features">
+                                p
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
             </div>
 
             
             <br />
-            <div className="container-fluid bg-warning">
-                
-                    <div className="col-1 bg-danger">p</div>
-                    <div className="col-2 bg-success">q</div>
-                    <div className="col-3 bg-warning">w</div>
-                    <div className="col-3 bg-info">w</div>
-                    <div className="col-3 bg-warning">w</div>
-                    <div className="col-1 bg-success">lebih</div>
-                
-            </div>
 
         </>
     )
