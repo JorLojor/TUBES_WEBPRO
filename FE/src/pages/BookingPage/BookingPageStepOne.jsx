@@ -1,3 +1,5 @@
+import img from '../../assets/iconbKP.png'
+import './BookingPageStepOne.css'
 
 
 function BookingPageStepOne() {
@@ -18,7 +20,7 @@ function BookingPageStepOne() {
         <div className ="container-fluid">
                 <div className ="row justify-content-center">
                 <div className ="col-8 set-bk-title text-center">
-                    <img src="" alt=""/>
+                    <img src={img} alt=""/>
                     
                 </div>
             </div>
