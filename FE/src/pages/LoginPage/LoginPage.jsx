@@ -2,21 +2,26 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const LoginPage = () => {
+
     const [formData, setFormData] = useState({
         name: '',
         password: '',
     });
 
+
+    useEffect(()=>{
+        window.localStorage.removeItem('accessToken');
+    },[])
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const response = await axios.post('http://localhost:3777/api/users/login', formData);
 
             if (response.status === 200) {
-                const accessToken = response.data.token;
+                const accessToken = response.data.data.token;
                 localStorage.setItem('accessToken', accessToken);
-                window.location.href = '/';
                 alert('Login Successful');
+                window.location.href = '/';
             }
         } catch (error) {
             console.log(error.message);

@@ -13,6 +13,7 @@ const userModel = new Schema({
     phone: { type: String, required: false },
     tanam_modal: SchemaPenanamModal,
     pinjam_modal: SchemaPinjamModal,
+    token: [String],
 }, {timestamps: true, collection: 'users'});
 
 const User = mongoose.model('User', userModel);

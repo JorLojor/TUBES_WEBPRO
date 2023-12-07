@@ -1,6 +1,10 @@
 import './LandingPage.css';
 import IntroLP from './IntroLP/intro';
 const LandingPage = () => {
+    const token = localStorage.getItem('accessToken');
+    if (token === ""){
+        window.location.href('/login');
+    }
 
     return(
         <>
