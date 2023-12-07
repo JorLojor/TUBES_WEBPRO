@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const responseSuccess = require('../../res/responseSucces')
 const responseError = require('../../res/responseError')
-const dotenv = require('dotenv');
+require('dotenv').config();
 
 exports.getAllUser = async (req, res) => {
     try{
@@ -69,22 +69,39 @@ exports.registerUser = async (req, res) => {
 exports.loginUser = async (req, res) => {
     try {
         const { name, password } = req.body;
+        switch(true){
+            case !name:
+                responseError(res, 400, 'Name tidak boleh kosong ! \t\n', 'masukkan name \t\n');
+                return ;
+            case !password:
+                responseError(res, 400, 'Password tidak boleh kosong ! \t\n', 'masukkan password \t\n');
+                return ;
+            }
 
-        const dataUser = await db.user.findOne({ name: name });
+            const VerifyUser = await db.user.findOne({
+                name: name,
+            }).select('-token');
 
-        if (!dataUser) {
-            return responseError(res, 400, 'Nama pengguna tidak ditemukan!', 'Masukkan nama pengguna yang benar.');
-        }
+            const comparePassword = await bcrypt.compare(password, VerifyUser.password);
+            comparePassword ? null : responseError(res, 400, 'Password salah ! \t\n', 'masukkan password yang benar \t\n');
 
-        const isPasswordMatch = await bcrypt.compare(password, dataUser.password);
-        if (!isPasswordMatch) {
-            return responseError(res, 400, 'Kata sandi salah!', 'Masukkan kata sandi yang benar.');
-        }
-        const token = jwt.sign({ id: dataUser._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-        return responseSuccess(res, { token }, 200, 'Berhasil login!');
-    } catch (error) {
-        console.error('Error during user login:', error);
-        return responseError(res, 500, 'Internal server error!', error.message);
+            const token = jwt.sign(
+                {id: VerifyUser._id}, 
+                "ngopiiiiiiiiiiiiiiiBrooooooo",
+                {expiresIn: '1d'}
+            );
+            
+            await db.user.findByIdAndUpdate(VerifyUser._id, {token: token}, {new: true});
+            const dataResponse = {
+                token: token,
+                message: 'Success login user ! \t\n',
+                user: VerifyUser
+            }
+            responseSuccess(res, dataResponse, 200, 'Success login user ! \t\n')
+            
+
+    }catch(error){
+        responseError(res, 500, 'Internal server error ! \t\n', error.message)
     }
 };
 
