@@ -9,14 +9,16 @@ require('dotenv').config();
 app.use(cors())
 app.use('/assets',express.static('assets')); 
 
-
+const url = 'mongodb+srv://nugas123man:Telkom.0329@tubeswebpro.fprfgno.mongodb.net/?retryWrites=true&w=majority';
 
 // database conection
-mongoose.connect('mongodb+srv://jors:Telkom0329@crowdfounding.hbzrysc.mongodb.net/?retryWrites=true&w=majority',{
+mongoose.connect(url,{
     useNewUrlParser: true,
     useUnifiedTopology: true,
-})
-// database conection
+}).then(() => {
+    console.log('Connected to the Database successfully')
+});
+
 
 // body parser
 app.use(express.json())
@@ -31,6 +33,8 @@ app.use('/api', api)
 app.use((err, req, res, next) => {
     res.status(500).json({
         success: false,
+        request : req.body,
+        next : next.api,
         message: err.message,
         data: null,
     });

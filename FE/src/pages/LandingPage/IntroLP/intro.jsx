@@ -1,5 +1,5 @@
 import './intro.css';
-import Footer from '../../../components/footer/Footer'
+import Footer from '../../../components/footer/footer';
 import gambar from '../../../assets/image-intro-lp.png';
 
 
