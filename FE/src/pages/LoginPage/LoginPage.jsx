@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import './LoginPage.css';
 import img from '../../assets/image306.png';
 
@@ -83,12 +84,14 @@ const LoginPage = () => {
                                 
                             </div> */}
 
-                            <div className="button-login mt-4 text-center">
+                            <div className="button-login mt-4">
                                 <button type="button" className="text-light  mt-3 mb-3" onClick={handleSubmit}>Login</button>
-                                {/* <p>Atau gunakan</p> */}
-                                {/* <button type="button" className="btn-login-google mt-1" onClick={handleSubmit}>
-                                    <img src="../assets/image4.png" alt=""/> Google
-                                </button> */}
+                                <p> belum punya akun</p>
+                                
+                                    <Link to="/register">
+                                        Register
+                                    </Link>
+                           
 
                             </div>  
 
@@ -101,40 +104,3 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
-
-
-
-// <div className="container-fluid">
-//                 <div className="card">
-//                     <div className="card-body">
-//                         <h1>Login Page</h1>
-//                         <label htmlFor="name">Username</label>
-//                         <input
-//                             type="text"
-//                             className="form-control"
-//                             id="name"
-//                             name="name"
-//                             onChange={updateForm}
-//                             value={formData.name}
-//                         />
-//                         <label htmlFor="password" className="form-label">
-//                             Password
-//                         </label>
-//                         <input
-//                             type="password"
-//                             className="form-control"
-//                             id="password"
-//                             name="password"
-//                             onChange={updateForm}
-//                             value={formData.password}
-//                         />
-//                     </div>
-//                     <button
-//                         className="btn rounded w-100"
-//                         style={{ background: '#121122', color: '#fff' }}
-//                         onClick={handleSubmit}
-//                     >
-//                         Login
-//                     </button>
-//                 </div>
-//             </div>

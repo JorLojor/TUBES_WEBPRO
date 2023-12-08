@@ -5,6 +5,7 @@ import LoginPage from './pages/LoginPage/LoginPage';
 // booking page
 import BookingPageStepThree from './pages/BookingPage/BookinPageStepThree'
 import BookingPageStepTwo from './pages/BookingPage/BookingPageStepTwo';
+import RegisterPage from './pages/LoginPage/RegisterPage';
 
 //projectDetail
 import ProjectDetail from './pages/ProjectDetail/ProjectDetail';
@@ -15,6 +16,7 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<LandingPage />} > </Route>
+                    <Route path="/register" element={<RegisterPage />} ></Route>
                     <Route path="/login" element={<LoginPage />} ></Route>
                     <Route path='/booking/final' element={<BookingPageStepThree />} ></Route>
                     <Route path='/booking/payment' element={<BookingPageStepTwo />} ></Route>

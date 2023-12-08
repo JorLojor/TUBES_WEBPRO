@@ -45,7 +45,7 @@ exports.getUserById = async (req, res) => {
 
 exports.registerUser = async (req, res) => {
     try{
-        const {name,password,age,email,role} = req.body;
+        const {name,password,email} = req.body;
         const cekUser = await db.user.findOne({
             $or:[{'email': email}, {'name': name}]
         });
@@ -57,7 +57,6 @@ exports.registerUser = async (req, res) => {
         const dataUser = await db.user.create({
             name: name,
             password: HashPassword,
-            age: age,
             email: email,
         });
         responseSuccess(res, 200, 'Success register user ! \t\n', dataUser)
