@@ -1,7 +1,35 @@
-.set-row{
+/* .set-row{
     margin-left: 160px !important;
     margin-right:160px !important;
+} */
+.container-intro-lp{
+    width: 100%;
+    padding: 0 14% 0 14%;
 }
+
+/* maincontent.jsx */
+.border-img-lp{
+    width: 506px;
+    height: 398.25px;
+    flex-shrink: 0;
+    border-radius: 15px;
+    border: 2px solid #E5E5E5;
+    position: absolute;
+    top: 80px;
+    right: 240px;
+    z-index: -1;
+}
+
+.container-img-intro-lp img{
+    
+    margin-left: 50%;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px ;
+}
+
+
+/* maincontent.jsx */
+
 span{
     color: #3252DF;
     text-align: center;
@@ -33,6 +61,10 @@ button{
     outline: none;
     border: none;
 }
+.container-text-intro-lp{
+    width: 100%;
+    height: 100%;
+}
 .text-intro-lp h1{
     color: #152C5B;
     font-family: Poppins;
@@ -50,40 +82,19 @@ button{
     line-height: 170%; /* 30.6px */
     margin-top: 30px;
 }
-.btn-find-ap{
-    width: 210px;
-    height: 50px;
-    flex-shrink: 0;
+.btn-findap{
+    padding: 10px 27px;
     border-radius: 4px;
     background: #3252DF;
     box-shadow: 0px 8px 15px 0px rgba(50, 82, 223, 0.30);
     margin-right: 17px;
 }
-.btn-how-itw{
-    width: 210px;
-    height: 50px;
-    flex-shrink: 0;
+.btn-howitw{
+    padding: 10px 27px;
+    width: fit-content;
     border-radius: 4px;
     background: #C4C4C4;
     box-shadow: 0px 8px 15px 0px rgba(50, 82, 223, 0.30);
-}
-.button-intro-lp{
-    margin-top: 61px;
-}
-.border-img-lp{
-    width: 506px;
-    height: 398.25px;
-    flex-shrink: 0;
-    border-radius: 15px;
-    border: 2px solid #E5E5E5;
-    position: absolute;
-    top: 50px;
-    right: 80px;
-    z-index: -1;
-}
-.container-img-intro-lp img{
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px ;
 }
 
 

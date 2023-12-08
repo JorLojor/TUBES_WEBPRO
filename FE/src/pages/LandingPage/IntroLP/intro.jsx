@@ -1,6 +1,6 @@
 import './intro.css';
 import Footer from '../../../components/footer/footer';
-import gambar from '../../../assets/image-intro-lp.png';
+import MainContent from '../MainContent/MainContent';
 
 
 
@@ -9,38 +9,9 @@ const IntroLP = () => {
     return(
         <>
             <div className="container-intro-lp">
-                <div className="row justify-content-between set-row">
-
-                   <div className="col-12 col-md-5">
-                        <div className="container-text-intro-lp">
-                            <div className="text-intro-lp">
-                                <h1>
-                                Together We can<br/>
-                                Grow up Together
-                                </h1>
-                                <p>
-                                    We are a crowdfunding company founded to help startups<br/>
-                                    who want to start their business to accelerate their<br/>
-                                    achievements, Start your business here
-                                </p>
-                            </div>
-                            <div className="button-intro-lp">
-                                <button className="btn-find-ap">Get Started</button>
-                                <button className="btn-how-itw">Learn More</button>
-                            </div>
-                        </div>
-                   </div>
-
-                   <div className="col-12 col-md-5">
-                        <div className="container-img-intro-lp position-relative">
-                            <img src={gambar} alt="Group-1" border="0" />
-                            <div className="border-img-lp">
-
-                            </div>
-                        </div>
-                   </div>
-
-                </div>
+             {/*  */}
+             <MainContent/>
+             {/*  */}
                 <div className="set-row set-row-sec">
                     <div className="box-info-intro-lp row">
 
