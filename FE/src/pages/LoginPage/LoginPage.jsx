@@ -5,7 +5,6 @@ import './LoginPage.css';
 import img from '../../assets/image306.png';
 
 const LoginPage = () => {
-
     const [formData, setFormData] = useState({
         name: '',
         password: '',
@@ -22,8 +21,9 @@ const LoginPage = () => {
 
             if (response.status === 200) {
                 const accessToken = response.data.data.token;
+                const ress = response.data.data.user.name;
                 localStorage.setItem('accessToken', accessToken);
-                alert('Login Successful');
+                alert('Login Successful',{ress});
                 window.location.href = '/';
             }
         } catch (error) {
