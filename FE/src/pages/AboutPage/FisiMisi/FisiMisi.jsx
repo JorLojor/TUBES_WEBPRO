@@ -19,7 +19,7 @@ const FisiMisi = () => {
                     </svg>
                         
                     </div>
-                    <div className="box-diagram">
+                    <div className="box-diagram border border-2">
                         <img src={diagramfm} alt="" />
                     </div>
                     <img src={fisimisimg}  alt="" />

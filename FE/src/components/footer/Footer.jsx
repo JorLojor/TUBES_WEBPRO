@@ -3,10 +3,10 @@ import './Footer.css';
 const Footer = () => {
     return (
     
-            <footer className="row text-light mt-5 set-footer">
-                <div className="col-12 col-md-3">
-                    <div className="text-logo-footer ">
-                        <h1>CrowdLab</h1>
+            <footer className="row text-light mt-5 set-footer ">
+                <div className="col-12 col-md-3 pt-5">
+                    <div className="  text-center mt-5 text-light">
+                        <h2>CrowdLab</h2>
                         <p className='mt-4'>Copyright © 2023.<br/>
                             All Rights Reserved.</p>
                     </div>

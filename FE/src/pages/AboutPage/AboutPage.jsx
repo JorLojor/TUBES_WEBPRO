@@ -1,5 +1,5 @@
 
-import Navbar from "../../components/Navbar/Navbar";
+import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
 import './AboutPage.css';
 import fotoAbout from '../../assets/fotoabout.png'
@@ -10,10 +10,8 @@ import OurGroup from "./OurGroup/OurGroup";
 const AboutPage = () => {
     return(
         <>
-            <div className="container-fluid" style={{position:'fixed',zIndex:'1', 
-                    backgroundColor:'white',width:'100%',height:'10vh',top:'0',left:'0'}}>
-                    <Navbar/>
-            </div>
+            
+            <Navbar/>
             <section className="container-fluid section-main">
                 <img src={fotoAbout} alt="" />
                 <h1>

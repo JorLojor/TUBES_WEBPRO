@@ -1,16 +1,15 @@
 
 import './ProjectPage.css';
-import Navbar from '../../components/Navbar/Navbar';
+import Navbar from '../../components/navbar/Navbar';
+import Footer from '../../components/footer/Footer';
 
 
 const ProjectPage = () => {
 
     return(
-        <>
-             <div className="container-fluid" style={{position:'fixed',zIndex:'1', 
-                backgroundColor:'white',width:'100%',height:'10vh',top:'0',left:'0'}}>
-                <Navbar/>
-            </div>
+        <> 
+            <Navbar/>
+
             <div className="container-fluid container-project-page">
                 <div className="row ms-2 mt-5 justify-content-center " style={{width:'80vw'}}>
 
@@ -205,6 +204,7 @@ const ProjectPage = () => {
 
                 </div>
             </div>
+            <Footer/>
         </>
     )
 }
