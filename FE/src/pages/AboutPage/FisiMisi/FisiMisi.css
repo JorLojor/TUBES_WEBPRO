@@ -1,0 +1,52 @@
+.box-iconfm{
+    width: 134px;
+    height: 134px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: var(--Blue, #2F41D1);
+    position: absolute;
+    top: -60px;
+    left: 130px;
+    padding: 35px;
+}
+
+.box-diagram{
+    background: #FFF;
+    width: 293px;
+    height: 313px;
+    flex-shrink: 0;
+    position: absolute;
+    z-index: 1;
+    border-radius: 15px;
+    top: 250px;
+    left: 400px;
+
+}
+.box-diagram img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.icon-visi-misi{
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: var(--Blue, #2F41D1);
+    padding: 8px;
+}
+
+.seeeeeetdah-bujut h1{
+    color: var(--Black, #232323);
+    font-family: Poppins;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 600;
+}
+
+.cover-visi-misi-text p{
+    padding-left: 100px;
+    padding-inline-end: 50px;
+}

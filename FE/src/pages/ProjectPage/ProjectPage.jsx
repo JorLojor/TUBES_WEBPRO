@@ -2,6 +2,7 @@
 import './ProjectPage.css';
 import Navbar from '../../components/Navbar/Navbar';
 
+
 const ProjectPage = () => {
 
     return(

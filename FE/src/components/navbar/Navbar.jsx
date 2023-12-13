@@ -17,9 +17,9 @@ const Navbar = () => {
                 </div>
                 <div className="col-6 ">
                         <ul className="nav-links d-flex justify-content-center set-menu-nav gap-5" style={{listStyleType: "none",textDecoration:'none',alignItems:'center',fontSize:'1.2rem',marginTop:'40px'}}> 
-                            <li className="mx-1"><Link style={{textDecoration:'none'}}><a href="/">Home</a></Link></li>
-                            <li className="mx-1"> <Link><a href="/">Project</a></Link></li>
-                            <li className="mx-1"><Link><a href="/">About</a></Link></li>
+                            <li className="mx-1"><Link to={"/"} >Home</Link></li>
+                            <li className="mx-1"> <Link to={"/project"}>Project</Link></li>
+                            <li className="mx-1"><Link to={"/about"}>About</Link></li>
                             <li className="mx-1"><Link><a href="/">Contact Us</a></Link></li>
                         </ul>
                 </div>

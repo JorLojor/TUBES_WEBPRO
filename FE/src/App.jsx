@@ -10,6 +10,9 @@ import RegisterPage from './pages/LoginPage/RegisterPage';
 //projectDetail
 import ProjectDetail from './pages/ProjectDetail/ProjectDetail';
 import ProjectPage from './pages/ProjectPage/ProjectPage';
+
+//aboutPage
+import AboutPage from './pages/AboutPage/AboutPage';
 function App() {
 
     return (
@@ -23,6 +26,7 @@ function App() {
                     <Route path='/booking/payment' element={<BookingPageStepTwo />} ></Route>
                     <Route path='/project/:id' element={<ProjectDetail />} ></Route>
                     <Route path='/project' element={<ProjectPage />} ></Route>
+                    <Route path='/about' element={<AboutPage />} ></Route>
                 </Routes>
             </BrowserRouter>
         </>
