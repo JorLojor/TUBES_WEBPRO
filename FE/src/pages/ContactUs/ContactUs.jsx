@@ -8,9 +8,16 @@ const ContactUs =() => {
         <>
         <Navbar/>
         <div>
-            <div className="rov">tlpn</div>
+            <div className="rov">Tlpn</div>
+
             <div className="row">Mail</div>
+
             <div className="row">OurAddres</div>
+
+            <div  className="row">Home</div>
+
+
+
         </div>
 
         <Footer/>
@@ -20,3 +27,4 @@ const ContactUs =() => {
 }
 
 export default ContactUs;
+
