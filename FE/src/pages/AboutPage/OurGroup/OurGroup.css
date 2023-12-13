@@ -1,0 +1,7 @@
+.box-poto{
+    width: 381px;
+    height: 361px;
+    flex-shrink: 0;
+    border-radius: 14px;
+    background: #C4C4C4;
+}

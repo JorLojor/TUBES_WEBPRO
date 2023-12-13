@@ -1,9 +1,11 @@
 
 import Navbar from "../../components/Navbar/Navbar";
+import Footer from "../../components/footer/Footer";
 import './AboutPage.css';
 import fotoAbout from '../../assets/fotoabout.png'
 import FisiMisi from "./FisiMisi/FisiMisi";
 import ChoseUs from "./ChoseUs/ChoseUs";
+import OurGroup from "./OurGroup/OurGroup";
 
 const AboutPage = () => {
     return(
@@ -25,7 +27,10 @@ const AboutPage = () => {
             <section className="mt-5 pt-5">
                 < ChoseUs />
             </section>
-        
+            <section className="mt-5 pt-5">
+                < OurGroup />
+            </section>
+            <Footer/>
         </>
     )
 }
