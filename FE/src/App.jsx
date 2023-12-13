@@ -13,6 +13,10 @@ import ProjectPage from './pages/ProjectPage/ProjectPage';
 
 //aboutPage
 import AboutPage from './pages/AboutPage/AboutPage';
+
+
+//ContactUs
+import ContactUs from './pages/ContactUs/ContactUs';
 function App() {
 
     return (
@@ -27,6 +31,7 @@ function App() {
                     <Route path='/project/:id' element={<ProjectDetail />} ></Route>
                     <Route path='/project' element={<ProjectPage />} ></Route>
                     <Route path='/about' element={<AboutPage />} ></Route>
+                    <Route path='/ContactUs' element={<ContactUs />} ></Route>
                 </Routes>
             </BrowserRouter>
         </>
