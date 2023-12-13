@@ -1,0 +1,50 @@
+.set-logo-nav{
+    color: #152C5B;
+    font-family: Poppins;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.set-logo-nav span{
+    color: #3252DF;
+    font-family: Poppins;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+a{
+    text-decoration: none;
+}
+.set-menu-nav a{
+    color: #000;
+    text-align: right;
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.btn-pp-nav{
+    margin-top: 30px;
+    width: 175px;
+    height: 50px;
+    flex-shrink: 0;
+    border-radius: 4px;
+    background: #3252DF;
+    box-shadow: 0px 8px 15px 0px rgba(50, 82, 223, 0.30);
+}
+
+.navbar-container{
+    border-bottom: 1px solid #E5E5E5;
+}

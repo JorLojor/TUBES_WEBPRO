@@ -30,11 +30,7 @@ const MainContent = ()=>{
 
                    <div className="col-12 col-md-5 d-flex justify-content-end">
                         <img src={gambar} alt="Group-1" border="0" />
-                        <div className="container-img-intro-lpposition-relative">
-                            <div className="border-img-lp">
-
-                            </div>
-                        </div>
+                    
                    </div>
 
                 </div>

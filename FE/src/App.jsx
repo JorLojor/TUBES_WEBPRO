@@ -9,6 +9,7 @@ import RegisterPage from './pages/LoginPage/RegisterPage';
 
 //projectDetail
 import ProjectDetail from './pages/ProjectDetail/ProjectDetail';
+import ProjectPage from './pages/ProjectPage/ProjectPage';
 function App() {
 
     return (
@@ -20,8 +21,8 @@ function App() {
                     <Route path="/login" element={<LoginPage />} ></Route>
                     <Route path='/booking/final' element={<BookingPageStepThree />} ></Route>
                     <Route path='/booking/payment' element={<BookingPageStepTwo />} ></Route>
-                    {/* <Route path='/project/:id' element={<ProjectDetail />} ></Route> */}
-                    <Route path='/project' element={<ProjectDetail />} ></Route>
+                    <Route path='/project/:id' element={<ProjectDetail />} ></Route>
+                    <Route path='/project' element={<ProjectPage />} ></Route>
                 </Routes>
             </BrowserRouter>
         </>
