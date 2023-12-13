@@ -1,0 +1,58 @@
+.box-why-chose h1{
+    font-family: Rubik;
+    font-size: 44px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.boxch-no{
+    height: 50px;
+    width: 50px;
+    background-color: #FFF;
+    border-radius: 5px;
+    text-align: center;
+    color: var(--Black, #232323);
+    text-align: center;
+    font-family: Rubik;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    padding-top: 5px;
+}
+
+h2{
+    color: var(--White, #FDFDFD);
+    font-family: Rubik;
+    font-size: 34px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+.text-why-ch{
+    padding-left: 80px;
+    padding-right: 80px;
+   
+}
+
+.text-why-ch p{
+    color: var(--White, #FDFDFD);
+    /* H6 */
+    font-family: Rubik;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px; /* 171.429% */
+}
+
+li{
+    margin-top: 30px;
+}
+
+
+.imggggggggggg img{
+    margin-right: -200px;
+    object-fit: cover;
+    border-radius: 5px;
+}
