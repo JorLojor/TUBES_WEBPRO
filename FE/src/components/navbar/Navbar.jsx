@@ -19,7 +19,7 @@ const Navbar = () => {
                     <li className="mx-3 set-li-nsv"><Link to={"/"} style={{color:'#1b1b1b',fontWeight:'600',fontSize:'20px'}}>Home</Link></li>
                     <li className="mx-3 set-li-nsv"><Link to={"/project"} style={{color:'#1b1b1b',fontWeight:'600',fontSize:'20px'}}>Project</Link></li>
                     <li className="mx-3 set-li-nsv"><Link to={"/about"} style={{color:'#1b1b1b',fontWeight:'600',fontSize:'20px'}}>About</Link></li>
-                    <li className="mx-3 set-li-nsv"><Link to={"/contact"} style={{color:'#1b1b1b',fontWeight:'600',fontSize:'20px'}}>Contact Us</Link></li>
+                    <li className="mx-3 set-li-nsv"><Link to={"/ContactUs"} style={{color:'#1b1b1b',fontWeight:'600',fontSize:'20px'}}>Contact Us</Link></li>
                 </div>
                 <div className="col-2 ">
                     <button className="btn-pp-nav text-center text-light my-3">
