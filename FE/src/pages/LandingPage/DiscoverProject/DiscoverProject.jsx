@@ -22,7 +22,7 @@ const DiscoverProject = ({ data }) => {
                         {data.map((item, index) => {
                             return (
                                 <div key={index} className="col-3">
-                                    <img src={`../../../../../BE/Upload/`} alt="" className="img-fluid" />
+                                   <img src={`http://localhost:3777/get-img/${item.img}`} alt="" className="img-fluid" />
                                     {item.title}
                                     {item.description}
                                 </div>
