@@ -8,7 +8,7 @@ const userModel = new Schema({
     password: { type: String, required: true },
     age: { type: Number, required: false, min: 18, max: 40 },
     email: { type: String, required: false, unique: true },
-    role: { type: String, required: false, default: 'user' }, // user, admin, penanam, peminjam
+    role: { type: String, required: false, default: 'user' }, // user, penanam, peminjam
     statusUser: { type: String, required: false },
     phone: { type: String, required: false },
     tanam_modal: SchemaPenanamModal,
@@ -17,4 +17,5 @@ const userModel = new Schema({
 }, {timestamps: true, collection: 'users'});
 
 const User = mongoose.model('User', userModel);
+
 module.exports = User;
