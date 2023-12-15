@@ -1,7 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import './ProjectDetail.css';
 import coins from '../../assets/stacks-of-coins.png';
 import FeaturedProjectLP from '../LandingPage/FeaturedProject/FeaturedProjectLP';
+import Navbar from '../../components/navbar/Navbar';
+import Footer from '../../components/footer/Footer';
 
 import { useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
@@ -11,65 +14,46 @@ import axios from 'axios';
 
 const ProjectDetail = () => {
     const { id } = useParams();
-    const [data, setData] = useState(null);
+    const [data, setData] = useState();
     const [dataFP, setDataFP] = useState([]);
     const url = `http://localhost:3777/api/project/${id}`;
     
 
-    // const getDataFP = async () => {
-    //     axios.get('http://localhost:3777/api/project')
-    //     .then((res) => {
-    //         setDataFP(res.data.projects);
-    //     })
-    //     .catch((err) => {
-    //         console.log(err);
-    //     })
-    // }
-
-    // const getDataProjectDetail = async () => {
-    //     axios.get(url)
-    //     .then((res) => {
-    //         setData(res.data.project);
-
-    //     })
-    //     .catch((err) => {
-    //         console.error('Error fetching data:', err);
-    //     });
-    // }
-
-
-
-
-    useEffect(() => {
-                axios.get(url)
-        .then((res) => {
-            setData(res.data.project);
-
-        })
-        .catch((err) => {
-            console.error('Error fetching data:', err);
-        });
-        
-        
-
-              axios.get('http://localhost:3777/api/project')
+    const getDataFP = async () => {
+        axios.get('http://localhost:3777/api/project')
         .then((res) => {
             setDataFP(res.data.projects);
+            // console.log(res.data.projects);
         })
         .catch((err) => {
             console.log(err);
         })
-    }, [dataFP,data]);
-
-    if (!data) {
-        // You might want to render a loading spinner or message here while data is being fetched
-        return <p>Loading...</p>;
     }
 
+    const getDataProjectDetail = async () => {
+        axios.get(url)
+        .then((res) => {
+            setData(res.data.project);
+            // console.log(res.data.project);
+        })
+        .catch((err) => {
+            console.error('Error fetching data:', err);
+        });
+    }
+
+    useEffect(() => {
+        getDataProjectDetail();
+    }, [id]);
+    
+    useEffect(() => {
+        getDataFP();
+    }, []);
+    
 
     return(
         <>
-            <div className="container-fluid ">
+            <Navbar/>
+            <div className="container-fluid" style={{paddingTop:'200px'}}>
                 
 
                 <div className="row set-row-project-detail  ">
@@ -77,29 +61,37 @@ const ProjectDetail = () => {
                     <div className="col-4  mt-project-detail ">
                         project detail
                     </div>
+                    {data && (
+                            <div className="col-4  text-center title-header-pd">
+                                <h1>{data.title}</h1>
+                                
+                                <small>AI Impact</small>
+                            </div>
+                        )}
 
-                    <div className="col-4  text-center title-header-pd">
-                        <h1>{data.title}</h1>
-                        
-                        <small>AI Impact</small>
-                    </div>
+
                     <div className="col-4">
                         
                     </div>
                 </div>
                 <div className="row set-row-project-detail justify-content-between mt-5 ">
                     <div className="col set-gambar-kiri-pd me-4 p-0">
-                        <img src={`http://localhost:3777/get-img/${data.img[0]}`} alt="" style={{ width: '100%', height: '100%',objectFit: 'cover',borderRadius: '15px',}} />
+
+                        {data && (<img src={`http://localhost:3777/get-img/${data.img[0]}`} alt="" style={{ width: '100%', height: '100%',objectFit: 'cover',borderRadius: '15px',}} />)}
+
+                        
                     </div>
 
                     <div className="col-5">
                         <div className="row">
                             <div className="col-12 set-gambar-kanan-pd p-0">
-                                <img src={`http://localhost:3777/get-img/${data.img[1]}`} alt="" style={{ width: '100%', height: '100%',objectFit: 'cover',borderRadius: '15px',}} />
+                                {data && (<img src={`http://localhost:3777/get-img/${data.img[1]}`} alt="" style={{ width: '100%', height: '100%',objectFit: 'cover',borderRadius: '15px',}} />)}
+                                
                                 
                             </div>
                             <div className="col-12 set-gambar-kanan-pd mt-3 p-0">
-                                <img src={`http://localhost:3777/get-img/${data.img[2]}`} alt="" style={{ width: '100%', height: '100%',objectFit: 'cover',borderRadius: '15px',}} />
+                                {data && (<img src={`http://localhost:3777/get-img/${data.img[0]}`} alt="" style={{ width: '100%', height: '100%',objectFit: 'cover',borderRadius: '15px',}} />)}
+                                
                                 
                             </div>
                         </div>
@@ -109,8 +101,7 @@ const ProjectDetail = () => {
 
                 </div>
 
-                <div className="row  justify-content-around
-                 mt-5 ">
+                <div className="row  justify-content-around mt-5 " style={{backgroundColor:''}}>
                     <div className="col-8 ">
                         <div className='' style={{height: '100%',
                         width: '70%',
@@ -120,9 +111,8 @@ const ProjectDetail = () => {
                         
                         <div className="box-text-about-project">
                             <h3>About The Project</h3>
-                            <p>
-                                {data.description} saya tambahim biar keren ++ Lorem ipsum, dolor sit amet consectetur adipisicing elit. Pariatur autem magni similique quidem aliquid minus, voluptas sit vel, quas, temporibus aut est exercitationem sint ducimus ut in esse nulla ipsam?
-                            </p>
+                            {data && (<p>{data.description} </p>)}
+                            
                         </div>
                         <ul>
                             <li>
@@ -206,6 +196,8 @@ const ProjectDetail = () => {
                     <div className="col-3  " style={{
                         marginRight: '70px',
                     }}>
+
+
                         <div className="box-start-invest">
 
                             <div className="box-start-invest-inner mb-3">
@@ -258,6 +250,8 @@ const ProjectDetail = () => {
 
 
                         </div>
+
+
                     </div>
 
 
@@ -300,6 +294,7 @@ const ProjectDetail = () => {
                 </div>
                 
             </div>
+            <Footer/>
         </>
     )
 };
