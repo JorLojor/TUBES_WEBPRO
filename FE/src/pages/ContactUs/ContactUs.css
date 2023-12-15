@@ -1,5 +1,5 @@
 .contactus{    
-    margin-top: 225px;
+    margin-top: 200px;
     color: var(--Primary-Text, #121E31);
     text-align: center;
     /* BigHeader / Poppins / Semibold 50 */
@@ -59,34 +59,40 @@
 
 .boxx{
     width: 560px;
-    height: 592.6px;
-    flex-shrink: 0;
     border-radius: 14px;
+    padding-bottom: 20px;
     background: #FFF;
+
+    position: absolute;
+    top: 20px;
+    right: 50px;
 
     /* Shadow - xl */
     box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.04), 0px 20px 25px 0px rgba(0, 0, 0, 0.10);
 }
 
 .boxx h2{
-    margin-left: 20%;
-    width: 473.066px;
-    height: 34.774px;
-    flex-shrink: 0;
 
     color: var(--Primary-Text, #121E31);
     font-family: Poppins;
     font-size: 22px;
     font-style: normal;
-    font-weight: 700;
-    line-height: normal;
+    font-weight: 800;
+    margin: auto;
+    margin-left: 27%;
+
+}
+
+.boxx p{
+    color: var(--Secondary-Text, #161616);
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
 }
 
 .btn-msg{
-
-    width: 160.104px;
-    height: 43.467px;
-    flex-shrink: 0;
+    padding: 10px 60px;
     border-radius: 8px;
     background: #3252DF;
 
@@ -99,4 +105,21 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+}
+
+
+.boxx input{
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    height: 40px;
+    font-size: 20px;
+    padding-left: 20px;
+    background-color: #f5f1f1;
+}
+
+.seeepdah input{
+    width: 100%;
+    height: 100px;
+    margin-bottom: 20px;
 }

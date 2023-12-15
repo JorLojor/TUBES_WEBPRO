@@ -58,50 +58,55 @@ const ContactUs =() => {
                         </div>
                     </div>
 
-                    <div className="mt-5 ayip bg-primary position-relative">
+                    <div className="mt-5 ayip  position-relative mb-5">
                         <img className="" src={culayer} alt=""/>
 
-                            <div className="boxx"> 
-                                <div className="col-5 bg-warning ps-2 mt-4">
+                            
+                                <div className="boxx container-fluid border mt-4 p-4 ">
 
                                     <h2>Write us a message</h2>
 
-                                    <div className="row bg-secondary mt-2">
-                                        <div className="col-6">
+                                    <div className="d-flex  justify-content-between">
+                                        <div className="col-12">
                                             <p>Full Name</p>
-                                            <input type="text"/>
+                                            <input type="text" style={{width:"100%"}}/>
+                                            <br />
+                                            <br />
                                             <p>Phone Number</p>
-                                            <input type="text"/>
+                                            <input type="text"style={{width:"100%"}} />
                                         </div>
-                                        <div className="col-6" >
+                                    </div>
+                                    <div className="d-flex   justify-content-between">
+                                        <div className="col-12" >
                                             <p>Email Address</p>
-                                            <input type="text"/>
+                                            <input type="text"style={{width:"100%"}}/>
+                                            <br />
+                                            <br />
                                             <p>Company Name</p>
-                                            <input type="text"/>
+                                            <input type="text"style={{width:"100%"}}/>
                                         </div>
                                     </div>
 
-                                    <div className="row bg-warning">
-                                        <div className="col-6">
+                                    <div className="d-flex seeepdah  ">
+                                        <div className="col-12">
                                             <p>Message</p>
-                                            <input type="text"/>
+                                            <input type="text"style={{width:"100%"}}/>
                                         </div>
                                     </div>
-
-                                    <div className="row bg-primary">
-                                        <div className="col-9">
-                                            <p>Accept terms & conditions</p>
+                                    <div className="d-flex form-check justify-content-end gap-3 align-center" >
+                                        <div className="mt-3">
+                                            <input className="form-check-input border border-2" type="checkbox" value="" id="flexCheckDefault" style={{width:"20px",height:"25px"}}/>
+                                            <label className="form-check-label mt-1" htmlFor="flexCheckDefault">
+                                                I agree to the terms & conditions
+                                            </label>
                                         </div>
-                                        <div className="col-3 ">
-                                            <button className="btn-msg text-center text-light mt-5">
-                                                Send
-                                            </button>
-                                        </div>
+                                        <button className="btn btn-primary mt-3">Send Message</button>
                                     </div>
+                                    
                                     
 
                                 </div>
-                            </div>
+                            
                     </div>
 
                     
@@ -119,4 +124,3 @@ const ContactUs =() => {
 }
 
 export default ContactUs;
-
