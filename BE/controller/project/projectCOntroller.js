@@ -1,19 +1,29 @@
 const Project = require('../../models/FeaturedProject/Project'); 
-const { uploadProjectImage } = require('../../middleware/fileUpload');
+const { uploadProjectImages } = require('../../middleware/fileUpload');
 
 exports.createProject = async (req, res) => {
     try {
-        uploadProjectImage(req, res, async function (err) {
+        uploadProjectImages(req, res, async function (err) {
             const { title, description, price } = req.body;
+
             if (err) {
                 return res.status(400).json({ success: false, message: err.message });
             }
+
             if (!title || !description || !price) {
                 return res.status(400).json({ success: false, message: 'Title, description, and price are required fields' });
             }
 
-            const img = req.file ? req.file.filename : undefined;
-            const project = new Project({ title, description, img, price });
+            const images = req.files; 
+            const imgArray = images.map((image) => image.filename);
+
+            const project = new Project({
+                title: title,
+                description: description,
+                img: imgArray,
+                price: price,
+            });
+
             await project.save();
             res.status(201).json({ success: true, project });
         });
@@ -22,6 +32,7 @@ exports.createProject = async (req, res) => {
         res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
 };
+
 
 
 // Controller untuk mendapatkan proyek dengan paginasi
@@ -63,28 +74,22 @@ exports.getProjectById = async (req, res) => {
 exports.updateProject = async (req, res) => {
     try {
         const { title, description, price } = req.body;
-
-        // Memanggil middleware uploadProjectImage untuk menangani unggahan gambar
-        uploadProjectImage(req, res, async function (err) {
-            if (err) {
-                return res.status(400).json({ success: false, message: err.message });
-            }
-
-            // Jika unggahan gambar berhasil, ekstrak nama file dari req.file
+        if (req.file) {
             const img = req.file.filename;
+            req.body.img = img;
+        }
 
-            const updatedProject = await Project.findByIdAndUpdate(
-                req.params.id,
-                { title, description, img, price },
-                { new: true }
-            );
+        const updatedProject = await Project.findByIdAndUpdate(
+            req.params.id,
+            { title, description, price, img: req.body.img },
+            { new: true }
+        );
 
-            if (!updatedProject) {
-                return res.status(404).json({ success: false, message: 'Proyek tidak ditemukan' });
-            }
+        if (!updatedProject) {
+            return res.status(404).json({ success: false, message: 'Proyek tidak ditemukan' });
+        }
 
-            res.json({ success: true, project: updatedProject });
-        });
+        res.json({ success: true, project: updatedProject });
     } catch (error) {
         console.error(error);
         res.status(500).json({ success: false, message: 'Internal Server Error' });

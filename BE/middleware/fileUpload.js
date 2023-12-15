@@ -1,8 +1,6 @@
 const multer = require('multer');
 const path = require('path');
 
-
-
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, path.join(__dirname, '../Upload'));
@@ -15,7 +13,6 @@ const storage = multer.diskStorage({
 });
 
 const imageFilter = function (req, file, cb) {
-    // hanya file gambar PNG atau JPEG
     if (file.mimetype === 'image/png' || file.mimetype === 'image/jpeg') {
         cb(null, true);
     } else {
@@ -23,9 +20,9 @@ const imageFilter = function (req, file, cb) {
     }
 };
 
-const uploadProjectImage = multer({
+const uploadProjectImages = multer({
     storage: storage,
     fileFilter: imageFilter,
-}).single('img');
+}).array('img', 3);
 
-module.exports = { uploadProjectImage };
+module.exports = { uploadProjectImages };
