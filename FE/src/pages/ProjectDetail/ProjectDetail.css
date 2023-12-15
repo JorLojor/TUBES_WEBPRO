@@ -73,14 +73,14 @@ small{
     background-color: yellow;
     background-size: cover;
     height: 245px;
-    width: 487px;
+    
 }
 .set-gambar-kanan-pd:last-child{
     border-radius: 15px;
     background-color: green;
     background-size: cover;
     height: 245px;
-    width: 487px;
+
 }
 
 
@@ -264,18 +264,16 @@ line-height: normal;
 }
 /*  */
 .box-text-about-project p{
-    color: #B0B0B0;
+    color: #7a7a7a;
     text-align: justify;
     font-family: Poppins;
-    font-size: 16px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 300;
     line-height: 170%; /* 27.2px */
 }
 
-.set-cover-box-invets{
-    padding-left: 74px;
-}
+
 
 .box-start-invest{
     width: 487px;

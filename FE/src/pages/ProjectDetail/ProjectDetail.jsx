@@ -1,20 +1,86 @@
+/* eslint-disable no-unused-vars */
 import './ProjectDetail.css';
-import coins from '../../assets/stacks-of-coins.png'
+import coins from '../../assets/stacks-of-coins.png';
+import FeaturedProjectLP from '../LandingPage/FeaturedProject/FeaturedProjectLP';
+
+import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
+
 
 const ProjectDetail = () => {
+    const { id } = useParams();
+    const [data, setData] = useState(null);
+    const [dataFP, setDataFP] = useState([]);
+    const url = `http://localhost:3777/api/project/${id}`;
+    
+
+    // const getDataFP = async () => {
+    //     axios.get('http://localhost:3777/api/project')
+    //     .then((res) => {
+    //         setDataFP(res.data.projects);
+    //     })
+    //     .catch((err) => {
+    //         console.log(err);
+    //     })
+    // }
+
+    // const getDataProjectDetail = async () => {
+    //     axios.get(url)
+    //     .then((res) => {
+    //         setData(res.data.project);
+
+    //     })
+    //     .catch((err) => {
+    //         console.error('Error fetching data:', err);
+    //     });
+    // }
+
+
+
+
+    useEffect(() => {
+                axios.get(url)
+        .then((res) => {
+            setData(res.data.project);
+
+        })
+        .catch((err) => {
+            console.error('Error fetching data:', err);
+        });
+        
+        
+
+              axios.get('http://localhost:3777/api/project')
+        .then((res) => {
+            setDataFP(res.data.projects);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+    }, [dataFP,data]);
+
+    if (!data) {
+        // You might want to render a loading spinner or message here while data is being fetched
+        return <p>Loading...</p>;
+    }
+
 
     return(
         <>
             <div className="container-fluid ">
+                
 
-                <div className="row set-row-project-detail ">
+                <div className="row set-row-project-detail  ">
 
                     <div className="col-4  mt-project-detail ">
                         project detail
                     </div>
 
                     <div className="col-4  text-center title-header-pd">
-                        <h1>Robotic Hand</h1>
+                        <h1>{data.title}</h1>
+                        
                         <small>AI Impact</small>
                     </div>
                     <div className="col-4">
@@ -22,16 +88,18 @@ const ProjectDetail = () => {
                     </div>
                 </div>
                 <div className="row set-row-project-detail justify-content-between mt-5 ">
-                    <div className="col set-gambar-kiri-pd me-4">
-                        p
+                    <div className="col set-gambar-kiri-pd me-4 p-0">
+                        <img src={`http://localhost:3777/get-img/${data.img[0]}`} alt="" style={{ width: '100%', height: '100%',objectFit: 'cover',borderRadius: '15px',}} />
                     </div>
 
-                    <div className="col-5  ">
+                    <div className="col-5">
                         <div className="row">
-                            <div className="col-12 set-gambar-kanan-pd">
+                            <div className="col-12 set-gambar-kanan-pd p-0">
+                                <img src={`http://localhost:3777/get-img/${data.img[1]}`} alt="" style={{ width: '100%', height: '100%',objectFit: 'cover',borderRadius: '15px',}} />
                                 
                             </div>
-                            <div className="col-12 set-gambar-kanan-pd mt-3">
+                            <div className="col-12 set-gambar-kanan-pd mt-3 p-0">
+                                <img src={`http://localhost:3777/get-img/${data.img[2]}`} alt="" style={{ width: '100%', height: '100%',objectFit: 'cover',borderRadius: '15px',}} />
                                 
                             </div>
                         </div>
@@ -41,13 +109,19 @@ const ProjectDetail = () => {
 
                 </div>
 
-                <div className="row set-row-project-detail justify-content-between mt-5 ">
-                    <div className="col-6">
+                <div className="row  justify-content-around
+                 mt-5 ">
+                    <div className="col-8 ">
+                        <div className='' style={{height: '100%',
+                        width: '70%',
+                        marginLeft: '110px',
+                    }}>
+
+                        
                         <div className="box-text-about-project">
                             <h3>About The Project</h3>
                             <p>
-                                Robotic hands are artificial hands that are able to perform tasks similar to a human hand. They are used in a variety of applications, including prosthetics, manufacturing, and research.
-                                This project aims to build a simple robotic hand using basic materials and tools. The hand will be able to move its fingers to grasp and release objects.
+                                {data.description} saya tambahim biar keren ++ Lorem ipsum, dolor sit amet consectetur adipisicing elit. Pariatur autem magni similique quidem aliquid minus, voluptas sit vel, quas, temporibus aut est exercitationem sint ducimus ut in esse nulla ipsam?
                             </p>
                         </div>
                         <ul>
@@ -124,12 +198,15 @@ const ProjectDetail = () => {
                                 </div>
                             </div>
                         </div>
+                        </div>
 
 
                     </div>
 
-                    <div className="col-5 set-cover-box-invets">
-                        <div className="box-start-invest ">
+                    <div className="col-3  " style={{
+                        marginRight: '70px',
+                    }}>
+                        <div className="box-start-invest">
 
                             <div className="box-start-invest-inner mb-3">
                                 <h2 className="mt-4"> Start Invest</h2>
@@ -188,9 +265,9 @@ const ProjectDetail = () => {
                 </div>
 
 
-                <div className="row set-row-project-detail justify-content-between mt-5 ">
+                <div className="row  set-row-project-detail justify-content-between mt-5">
                     <div className="col-4">
-                        <h2>
+                        <h2 className='text-dark'>
                             We have done <br/>
                             many crowdfunding projects 
                         </h2>
@@ -215,100 +292,13 @@ const ProjectDetail = () => {
                         </button>
                     </div>
                 </div>
-                <div className="row set-row-project-detail justify-content-between mt-5 ">
-                    
 
-                        <div className ="col-12 col-md-3 mt-5 ">
-
-                            <div className ="box-content-features">
-                                <div className ="image-content-features">
-
-                                    <div className ="text-image-content ">
-                                        test test test
-                                    </div>
-                                </div>
-                                <div className ="row ps-2">
-                                    
-                                    <div className ="col-12 mt-3">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, totam.
-                                    </div>
-
-                                    <div className ="col-12  mt-3">
-                                        <div className ="outer-bar-features">
-                                            <div className ="inner-bar-features"></div>
-                                        </div>
-                                    </div>
-
-                                    <div className ="col-11 mt-2">
-                                        <div className ="row justify-content-between set-data-per-features">
-                                            <div className ="col-2 text-start set-pecents"> 75% </div>
-                                            <div className ="col-2 text-end set-price"> $1000.000</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </div>
-                        
-                        <div className ="col-12 col-md-3 mt-5">
-                            <div className ="box-content-features">
-                                <div className ="image-content-features">
-                                    <div className ="text-image-content ">
-                                        test test test
-                                    </div>
-                                    </div>
-                                    <div className ="row ps-2">
-
-                                        <div className ="col-12 mt-3">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, totam.
-                                        </div>
-
-                                        <div className ="col-12  mt-3">
-                                            <div className ="outer-bar-features">
-                                                <div className ="inner-bar-features"></div>
-                                            </div>
-                                        </div>
-
-                                        <div className ="col-11 mt-2">
-                                            <div className ="row justify-content-between set-data-per-features">
-                                                <div className ="col-2 text-start set-pecents"> 75% </div>
-                                                <div className ="col-2 text-end set-price"> $1000.000</div>
-                                            </div>
-                                        </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className ="col-12 col-md-3 mt-5">
-                            <div className ="box-content-features">
-                                <div className ="image-content-features">
-                                    <div className ="text-image-content ">
-                                        test test test
-                                    </div>
-                                </div>
-                                <div className ="row ps-2">
-
-                                    <div className ="col-12 mt-3">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, totam.
-                                    </div>
-
-                                    <div className ="col-12  mt-3">
-                                        <div className ="outer-bar-features">
-                                            <div className ="inner-bar-features"></div>
-                                        </div>
-                                    </div>
-
-                                    <div className ="col-11 mt-2">
-                                        <div className ="row justify-content-between set-data-per-features">
-                                            <div className ="col-2 text-start set-pecents"> 75% </div>
-                                            <div className ="col-2 text-end set-price"> $1000.000</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <div className="row  set-row-project-detail justify-content-between mt-5">
+                    <div className="col-12">
+                        <FeaturedProjectLP data={dataFP}/>
+                    </div>
                 </div>
+                
             </div>
         </>
     )

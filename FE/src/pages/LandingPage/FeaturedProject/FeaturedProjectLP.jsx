@@ -4,8 +4,6 @@ import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 const FeaturedProjectLP = ({ data }) => {
-    console.log(data);
-
     return (
         <>
             <div className="set-row set-row-four">
@@ -16,8 +14,8 @@ const FeaturedProjectLP = ({ data }) => {
                 </div>
                 <div className="row ms-2 mt-5 justify-content-center">
                     {data.map((item, index) => (
-                        <div key={item._id} className="col-12 col-md-3 mt-5 ">
-                            <div className="box-content-features border border-dark">
+                        <Link to={`/project-detail/${item._id}`}key={item._id} className="col-12 col-md-4 mt-5 text-dark ">
+                            <div className="box-content-features m-auto" style={{boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.10)',}}>
                                 <div className="image-content-features">
                                     <img src={`http://localhost:3777/get-img/${item.img[0]}`} alt="" style={{ width: '100%', height: '100%' }} />
                                     <div className="text-image-content">
@@ -41,7 +39,7 @@ const FeaturedProjectLP = ({ data }) => {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
                 <div className="row mt-5 justify-content-center">

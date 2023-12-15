@@ -22,10 +22,26 @@ const DiscoverProject = ({ data }) => {
                         <div className="row  justify-content-between">
                         {data.map((item, index) => {
                             return (
-                                <div key={index} className="col-3">
-                                    <Link to={`/project-detail/${item._id}`} className="card card-discover">
+                                <div key={index} className="col-3" style={
+                                    {
+                                        display: 'flex',
+                                        width:'243px',
+                                        height: '243px',
+                                        flexDirection: 'column',
+                                        marginBottom: '20px',
+                                        backgroundColor: '#FAFAFA',
+                                        borderRadius: '10px',
+                                        padding: '10px',
+                                        boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.10)',
+                                     
+                                    }
+                                }>
+                                    <Link to={`/project-detail/${item._id}`} className=" text-dark" style={{
+                                        width: '100%',
+                                        height: '100%',
+                                        }}>
                                     
-                                        <img src={`http://localhost:3777/get-img/${item.img}`} alt="" className="img-fluid" />
+                                        <img src={`http://localhost:3777/get-img/${item.img}`} alt="" style={{ width: '100%', height: '70%' }} />
                                         {item.title}
                                         {item.description}
                                     </Link>
