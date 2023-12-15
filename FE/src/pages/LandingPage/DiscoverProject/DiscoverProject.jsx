@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import propTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const DiscoverProject = ({ data }) => {
     const imgUrl = ''
@@ -22,9 +23,12 @@ const DiscoverProject = ({ data }) => {
                         {data.map((item, index) => {
                             return (
                                 <div key={index} className="col-3">
-                                   <img src={`http://localhost:3777/get-img/${item.img}`} alt="" className="img-fluid" />
-                                    {item.title}
-                                    {item.description}
+                                    <Link to={`/project-detail/${item._id}`} className="card card-discover">
+                                    
+                                        <img src={`http://localhost:3777/get-img/${item.img}`} alt="" className="img-fluid" />
+                                        {item.title}
+                                        {item.description}
+                                    </Link>
                                 </div>
                             );
                         })}

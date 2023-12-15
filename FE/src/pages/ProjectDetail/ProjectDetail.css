@@ -62,7 +62,7 @@ small{
     width: 643px;
     height: 500px;
     border-radius: 15px;
-    background-image: url('../assets/pdkp.png');
+    background-color: red;
     /* background-color: aqua; */
     background-repeat: no-repeat;
     background-size: cover;
@@ -70,15 +70,17 @@ small{
 
 .set-gambar-kanan-pd:first-child{
     border-radius: 15px;
-    background-image: url('../assets/pdka.png');
+    background-color: yellow;
     background-size: cover;
     height: 245px;
+    width: 487px;
 }
 .set-gambar-kanan-pd:last-child{
     border-radius: 15px;
-    background-image: url('../assets/pdkb.png');
+    background-color: green;
     background-size: cover;
     height: 245px;
+    width: 487px;
 }
 
 

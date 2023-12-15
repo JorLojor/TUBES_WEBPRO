@@ -18,12 +18,12 @@ const ProjectDetail = () => {
                         <small>AI Impact</small>
                     </div>
                     <div className="col-4">
-                
+                        
                     </div>
                 </div>
                 <div className="row set-row-project-detail justify-content-between mt-5 ">
                     <div className="col set-gambar-kiri-pd me-4">
-                        
+                        p
                     </div>
 
                     <div className="col-5  ">
