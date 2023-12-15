@@ -10,7 +10,7 @@ require('dotenv').config();
 app.use(cors());
 
 // Middleware Static untuk Upload
-app.use('/get-img', express.static(path.join(__dirname, 'Upload'))); // http://localhost:5000/get-img/1620114470799-10000000.jpg
+app.use('/get-img', express.static(path.join(__dirname, 'Upload'))); // http://localhost:5000/Upload/1616740744479-10000000-1.jpg
 
 // URL Koneksi MongoDB
 const url = 'mongodb+srv://nugas123man:Telkom.0329@tubeswebpro.fprfgno.mongodb.net/?retryWrites=true&w=majority';
