@@ -30,7 +30,7 @@ const ProjectPage = () => {
             <div className="container-fluid container-project-page">
                 <div className="row ms-2 mt-5 justify-content-center " style={{width:'80vw'}}>
                 <div className="row ms-2 mt-5 justify-content-center">
-                    {data.map((item, index) => (
+                    {data.map((item) => (
                         <Link to={`/project-detail/${item._id}`}key={item._id} className="col-12 col-md-4 mt-5 text-dark ">
                             <div className="box-content-features m-auto" style={{boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.10)',}}>
                                 <div className="image-content-features">

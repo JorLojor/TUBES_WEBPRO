@@ -79,11 +79,6 @@ const LoginPage = () => {
                                 onChange={updateForm}
                                 value={formData.password}
                                 />
-                            
-                            {/* <div className="input-user-name mt-4">
-                                
-                            </div> */}
-
                             <div className="button-login mt-4">
                                 <button type="button" className="text-light  mt-3 mb-3" onClick={handleSubmit}>Login</button>
                                 <p> belum punya akun</p>

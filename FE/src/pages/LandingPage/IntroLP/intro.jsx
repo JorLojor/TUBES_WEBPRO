@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import './intro.css';
-import Footer from '../../../components/footer/footer';
+import Footer from '../../../components/footer/Footer';
 import MainContent from '../MainContent/MainContent';
 import MainDataLP from '../MainDataLP/MainDataLP';
 import DiscoverProject from '../DiscoverProject/DiscoverProject';
@@ -20,7 +20,6 @@ const IntroLP = () => {
             console.log(err);
         })
     }
-
     const getDataFP = async () => {
         axios.get('http://localhost:3777/api/project')
         .then((res) => {
