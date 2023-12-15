@@ -6,9 +6,8 @@ const api = require('./api/index');
 require('dotenv').config();
 
 
-app.use(cors())
-app.use('/assets',express.static('assets')); 
-
+app.use(cors());
+app.use('../Upload', express.static(path.join(__dirname, 'Upload')));
 const url = 'mongodb+srv://nugas123man:Telkom.0329@tubeswebpro.fprfgno.mongodb.net/?retryWrites=true&w=majority';
 
 // database conection
