@@ -200,7 +200,7 @@ line-height: normal;
 }
 
 .image-content-features{
-    background-image: url(../../../assets/kapal.jpeg);
+    /* background-image: url(../../../assets/kapal.jpeg); */
     height: 50%;
     position: relative;
     border-top-right-radius: 15px;
