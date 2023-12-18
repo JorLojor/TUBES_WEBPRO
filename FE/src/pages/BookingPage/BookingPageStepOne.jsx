@@ -1,5 +1,5 @@
 import img from '../../assets/iconbKP.png'
-import './BookingPageStepOne.css'
+// import PropTypes from 'prop-types';
 
 
 function BookingPageStepOne() {

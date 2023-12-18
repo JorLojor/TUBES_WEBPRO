@@ -5,6 +5,7 @@ import coins from '../../assets/stacks-of-coins.png';
 import FeaturedProjectLP from '../LandingPage/FeaturedProject/FeaturedProjectLP';
 import Navbar from '../../components/navbar/Navbar';
 import Footer from '../../components/footer/Footer';
+import { Link } from 'react-router-dom';
 
 import { useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
@@ -17,7 +18,37 @@ const ProjectDetail = () => {
     const [data, setData] = useState();
     const [dataFP, setDataFP] = useState([]);
     const url = `http://localhost:3777/api/project/${id}`;
+    const [years, setYears] = useState(0);
+    const [type, setType] = useState('Bagi Hasil');
+    const [total, setTotal] = useState(0);
+    const [invest, setInvest] = useState(0);
+
+    const youWillRecive = () => {
+        if (type === 'Bagi Hasil') {
+            setTotal(years * invest / 100);
+        } else if (type === 'Donasi') {
+            setTotal("Pahala");
+        } else if (type === 'Saham') {
+            setTotal(years * invest / 100);
+        }
+    }
+
+    useEffect(() => {
+        youWillRecive();
+    }, [years, invest, type]);
+
+
+
+    const tambahtahun = ()=>{
+        setYears(years+1);
+    }
     
+    const kurangtahun = ()=>{
+        setYears(years-1);
+        if (years <= 0) {
+            setYears(0);
+        }
+    }
 
     const getDataFP = async () => {
         axios.get('http://localhost:3777/api/project')
@@ -198,11 +229,16 @@ const ProjectDetail = () => {
                     }}>
 
 
-                        <div className="box-start-invest">
+                        <div className="box-start-invest pb-5">
 
                             <div className="box-start-invest-inner mb-3">
                                 <h2 className="mt-4"> Start Invest</h2>
-                                <input type="text" placeholder="xxxxx$"/>
+                                <input type="text" 
+                                className="mt-4"
+                                onChange={(e)=>{setInvest(e.target.value)}}
+                                placeholder="xxxxx$" style={{
+                                    paddingLeft:'20px'
+                                }}/>
                             </div>
 
 
@@ -211,13 +247,19 @@ const ProjectDetail = () => {
                                 <h3 htmlFor="">Profit Return</h3>
                                 <div className="input-profit-returnmt-4">
                                     <div className="row justify-content-center">
-                                        <div className="col-2 set-years-min">
+                                        <button className="btn col-2 set-years-min" 
+                                        onClick={kurangtahun}
+                                        >
                                             -
+                                        </button>
+                                        <div className="col-7 set-years">
+                                            <p>{years} Years</p>
                                         </div>
-                                        <div className="col-7 set-years"> 4 Years</div>
-                                        <div className="col-2 set-years-plus">
+                                        <button className="btn col-2 set-years-plus"
+                                        onClick={tambahtahun}
+                                        >
                                             +
-                                        </div>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -227,12 +269,32 @@ const ProjectDetail = () => {
                                 <h3 htmlFor="">invest type</h3>
                                 <div className="row">
                                     <div className="col-2">
-                                        <div className="box-icon-calendar">
+                                        <div className="box-icon-calendar" style={{
+                                            width:'60px',
+                                            height:'50px',
+                                            borderRadius:'10px',
+                                            paddingLeft:'0px'
+                                        }}>
                                             
                                         </div>
                                     </div>
-                                    <div className="col-10 set-inves-type-text">
-                                        <p>Bagi Hasil</p>
+                                    <div className="col-10 ">
+                                        {/* drop down */}
+                                        <select className='set-inves-type-text' name="invest-type" id="invest-type" onChange={(e)=>{setType(e.target.value)}} 
+                                        style={{
+                                            width:'100%',
+                                            height:'50px',
+                                            borderRadius:'10px',
+                                            paddingLeft:'0px',
+                                            outline:'none',
+                                            border:'none',
+                                        }}
+                                        >
+                                            <option value="Bagi Hasil">Bagi Hasil</option>
+                                            <option value="Donasi">sedekah</option>
+                                            <option value="Saham">Saham</option>
+                                        </select>
+
                                     </div>
                                 </div>
                             </div>
@@ -240,12 +302,19 @@ const ProjectDetail = () => {
 
                             <div className="cover-y-w-r">
                                 <p className="you-will-recive mt-4">
-                                    You will Receive <span> $10.000 USD  </span> 
+                                    You will Receive <span>
+                                        {total} / Year
+                                        </span> 
                                 </p>
                             </div>
 
                             <div className="cover-btn-invest text-center">
-                                <button className ="btn-find-ap">Get Started</button>
+                                <button className ="btn-find-ap">
+                                    <Link to="/booking/payment" className="text-decoration-none text-white"
+                                    >                    
+                                        Get Started
+                                    </Link>
+                                </button>
                             </div>
 
 

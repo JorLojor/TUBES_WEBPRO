@@ -1,19 +1,22 @@
 import '../BookingPage/BookingPageStepTwo.css';
 import bca from '../../assets/bca.png';
 import mandiri from '../../assets/mandiri.png';
+import { Link } from 'react-router-dom';
 
 function BookingPageStepTwo(){
 
     return(
         
         <>
-            <div className="container-fluid text-center title-header">
+    <div style={{width: '100vw', height: '100vh'}}>
+    <div className="container-fluid text-center title-header">
         Crowd<span>Lab.</span>
     </div>
     <div className="container-fluid set-container">
         <div className="row mt-5 justify-content-center">
+
             <div className="col-6 d-flex justify-content-center">
-                <div className="circle">
+                <div className="circle bg-primary text-dark">
                     1
                 </div>
                 <div className="circle">
@@ -23,6 +26,7 @@ function BookingPageStepTwo(){
                     3
                 </div>
             </div>
+            
         </div>
 
         <div className="row mt-5 justify-content-center">
@@ -81,10 +85,12 @@ function BookingPageStepTwo(){
 
                 </div>
             </div>
-            <div className="col-5 ps-4 mt-5">
+            <div className="col-5  mt-5 " style={{
+                paddingLeft: '16%'
+            }}>
                 <div className="data-payment">
                     <p>Upload Bukti Transfer</p>
-                    <input type="text"/>
+                    <input type="file"/>
                 </div>
                 <div className="data-payment mt-3">
                     <p>Asal Bank</p>
@@ -97,14 +103,25 @@ function BookingPageStepTwo(){
             </div>
         </div>
 
-        <div className="row mt-5 mb-5 justify-content-center">
-            <div className="col-3">
-                <button className ="btn-find-ap">Continue</button>
-                <button className ="btn-how-itw mt-3">Cancel</button>
+        <div className="row mt-5 justify-content-center">
+            <div className="col-3 ps-5 ">
+                <button className ="btn-find-apppp">Continue</button>
+                
+            </div>
+        </div>
+        <div className="row mb-5  justify-content-center">
+            <div className="col-3 ps-5 ">
+
+                <Link to="/">
+                    <button className ="btn-how-itw mt-3 me-1">Cancel</button>
+                </Link>
             </div>
         </div>
 
     </div>
+
+    </div>
+    
         </>
 
     )

@@ -7,6 +7,7 @@ import AuthGuard from './middleware/AuthGuard';
 // booking page
 import BookingPageStepThree from './pages/BookingPage/BookinPageStepThree'
 import BookingPageStepTwo from './pages/BookingPage/BookingPageStepTwo';
+import BookingPageStepOne from './pages/BookingPage/BookingPageStepOne';
 import RegisterPage from './pages/LoginPage/RegisterPage';
 
 //projectDetail
@@ -30,12 +31,17 @@ function App() {
 
                     <Route path='/booking/final' element={<AuthGuard><BookingPageStepThree /></AuthGuard>} />
                     <Route path='/booking/payment' element={<AuthGuard><BookingPageStepTwo /></AuthGuard>} />
+                    <Route path='/booking' element={<AuthGuard><BookingPageStepOne /></AuthGuard>} />
+
+                    
                     <Route path='/project-detail/:id' element={<AuthGuard><ProjectDetail /></AuthGuard>} />
                     <Route path='/project' element={<AuthGuard><ProjectPage /></AuthGuard>} />
                     {/* <Route path='/about' element={<AuthGuard><AboutPage /></AuthGuard>} /> */}
                     {/* <Route path='/ContactUs' element={<AuthGuard><ContactUs /></AuthGuard>} /> */}
                     <Route path='/about' element={<AboutPage />} ></Route>
                     <Route path='/ContactUs' element={<ContactUs />} ></Route>
+
+
                     
 
 
