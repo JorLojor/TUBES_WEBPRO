@@ -39,14 +39,9 @@ function App() {
                     
                     <Route path='/project-detail/:id' element={<AuthGuard><ProjectDetail /></AuthGuard>} />
                     <Route path='/project' element={<AuthGuard><ProjectPage /></AuthGuard>} />
-                    {/* <Route path='/about' element={<AuthGuard><AboutPage /></AuthGuard>} /> */}
-                    {/* <Route path='/ContactUs' element={<AuthGuard><ContactUs /></AuthGuard>} /> */}
+                  
                     <Route path='/about' element={<AboutPage />} ></Route>
                     <Route path='/ContactUs' element={<ContactUs />} ></Route>
-
-
-                    
-
 
                     
                 </Routes>

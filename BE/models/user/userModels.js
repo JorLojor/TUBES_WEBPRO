@@ -1,6 +1,4 @@
 const mongoose = require('mongoose');
-const SchemaPenanamModal = require('./UserPenanamModal');
-const SchemaPinjamModal = require('./UserPinjamModal');
 const Schema = mongoose.Schema;
 
 const userModel = new Schema({
@@ -11,8 +9,9 @@ const userModel = new Schema({
     role: { type: String, required: false, default: 'user' }, // user, penanam, peminjam
     statusUser: { type: String, required: false },
     phone: { type: String, required: false },
-    tanam_modal: SchemaPenanamModal,
-    pinjam_modal: SchemaPinjamModal,
+    address: { type: String, required: false },
+    TanamModal: { type: mongoose.Schema.Types.ObjectId, ref: 'PenanamModal' },
+    PinjamModal: { type: mongoose.Schema.Types.ObjectId, ref: 'PinjamModal' },
     token: [String],
 }, {timestamps: true, collection: 'users'});
 

@@ -49,9 +49,6 @@ const Profile = () => {
                 <div className="row">
                     <div className="col-3">
                         <div className="box-profile-page">
-                            {/* <div className="d-flex justify-content-center">
-                                <img src="https://i.pinimg.com/originals/5d/9c/7e/5d9c7e6c5d0a2b1c6f7e0e5b6a3f4b6a.jpg" alt="" />
-                            </div> */}
                             <div className="d-flex justify-content-center">
                                 <h3>{user.name}</h3>
                             </div>
