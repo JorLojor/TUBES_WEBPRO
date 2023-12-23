@@ -3,6 +3,7 @@ const User = require('../../models/user/userModels');
 const { uploadProjectImages } = require('../../middleware/fileUpload');
 const db = require('../../models/index')
 const PinjamModal = db.peminjam;
+const PenanamModal = db.penanam;
 
 
 exports.createProject = async (req, res) => {
@@ -66,6 +67,53 @@ exports.createProject = async (req, res) => {
 };
 
 
+// Controller untuk memodalkan proyek
+
+exports.TanamModal = async (req, res) => {
+    try{
+        const { idUser } = req.params; // id user
+        const { idProject } = req.params; // id project
+        const { uang_modal } = req.body; // uang modal
+
+        if (!idUser || !idProject) {
+            return res.status(400).json({ success: false, message: 'idUser dan idProject harus terdefinisi' });
+        }
+
+        const dataUser = await User.findById(idUser);
+        if (!dataUser) {
+            return res.status(404).json({ success: false, message: 'User tidak ditemukan' });
+        }
+        
+        const dataProject = await Project.findById(idProject);
+        if (!dataProject) {
+            return res.status(404).json({ success: false, message: 'Project tidak ditemukan' });
+        }
+
+        let uang_menetap = 0;
+        //jika uang modal lebih kecil dari harga proyek
+        if(uang_modal < dataProject.price){
+            return res.status(400).json({ success: false, message: 'Uang modal harus lebih besar dari harga proyek' });
+        }
+        //jika uang modal lebih besar dari harga proyek
+        uang_menetap = uang_modal - dataProject.price;
+
+        // buat user penanamModal
+        const newPenanamModal = new PenanamModal({
+            uang_menetap: uang_menetap,
+            uang_modal: uang_modal,
+            project: dataProject._id,
+        });
+
+        dataProject.pemodal.push(newPenanamModal._id);
+        await newPenanamModal.save();
+        await dataProject.save();
+        res.status(201).json({ success: true, newPenanamModal });
+    }catch(error){
+        console.error(error);
+        res.status(500).json({ success: false, message: 'Internal Server Error' });
+    }
+}
+
 
 
 // Controller untuk mendapatkan proyek dengan paginasi
@@ -102,6 +150,8 @@ exports.getProjectById = async (req, res) => {
         res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
 };
+
+
 
 // Controller untuk memperbarui proyek berdasarkan ID
 exports.updateProject = async (req, res) => {
