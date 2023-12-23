@@ -43,6 +43,16 @@ exports.getUserById = async (req, res) => {
     }
 }
 
+exports.getUserByName = async (req, res) => {
+    try{
+        const userName = req.params.name;
+        const dataUser = await db.user.findOne({name: userName});
+        responseSuccess(res,dataUser,200,"Success get user by name !")
+    }catch(error){
+        responseError(res,error)
+    }
+}
+
 exports.registerUser = async (req, res) => {
     try{
         const {name,password,email} = req.body;

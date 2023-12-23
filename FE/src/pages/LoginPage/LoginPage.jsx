@@ -23,6 +23,7 @@ const LoginPage = () => {
                 const accessToken = response.data.data.token;
                 const ress = response.data.data.user.name;
                 localStorage.setItem('accessToken', accessToken);
+                localStorage.setItem('user', ress);
                 alert('Login Successful',{ress});
                 window.location.href = '/';
             }

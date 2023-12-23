@@ -18,6 +18,8 @@ import ProjectPage from './pages/ProjectPage/ProjectPage';
 import AboutPage from './pages/AboutPage/AboutPage';
 //ContactUs
 import ContactUs from './pages/ContactUs/ContactUs';
+//profile
+import Profile from './pages/ProfilePage/Profile';
 
 function App() {
 
@@ -32,6 +34,7 @@ function App() {
                     <Route path='/booking/final' element={<AuthGuard><BookingPageStepThree /></AuthGuard>} />
                     <Route path='/booking/payment' element={<AuthGuard><BookingPageStepTwo /></AuthGuard>} />
                     <Route path='/booking' element={<AuthGuard><BookingPageStepOne /></AuthGuard>} />
+                    <Route path='/profile/:id' element={<AuthGuard><Profile /></AuthGuard>} />
 
                     
                     <Route path='/project-detail/:id' element={<AuthGuard><ProjectDetail /></AuthGuard>} />

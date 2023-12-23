@@ -1,9 +1,29 @@
 import { Link } from "react-router-dom";
 import Logo from '../../assets/logo.png'
 import './Navbar.css'
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 
 const Navbar = () => {
+
+    const url = 'http://localhost:3777/api/users/name/';
+    const dataUser = localStorage.getItem('user');
+    
+    const [user, setUser] = useState();
+
+    useEffect(() => {
+        axios.get(`${url}${dataUser}`)
+            .then((res) => {
+                setUser(res.data.data);
+                console.log(res.data.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
+    , [ dataUser ]);
+
 
     return(
         <>
@@ -22,9 +42,11 @@ const Navbar = () => {
                     <li className="mx-3 set-li-nsv"><Link to={"/ContactUs"} style={{color:'#1b1b1b',fontWeight:'600',fontSize:'20px'}}>Contact Us</Link></li>
                 </div>
                 <div className="col-2 ">
-                    <button className="btn-pp-nav text-center text-light my-3">
-                        Profile
-                    </button>
+                    <Link to={`/profile/${user?._id}`}>
+                        <button className="btn-pp-nav text-center text-light my-3">
+                            Profile
+                        </button>
+                    </Link>
                 </div>
             </div>
         </div>
