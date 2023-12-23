@@ -7,7 +7,7 @@ import axios from 'axios';
 
 const Navbar = () => {
 
-    const url = 'http://localhost:3777/api/users/name/';
+    const url = 'http://localhost:3777/api/users/nameUser/';
     const dataUser = localStorage.getItem('user');
     
     const [user, setUser] = useState();

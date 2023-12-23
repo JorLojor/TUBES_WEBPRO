@@ -4,9 +4,19 @@ import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 const DiscoverProject = ({ data }) => {
-    const imgUrl = ''
 
     console.log(data);
+
+    // cut string
+    const cutString = (str, num) => {
+        if (str.length > num) {
+            return str.slice(0, num) + '...';
+        }
+        else {
+            return str;
+        }
+    }
+    
     return (
         <>
             <div className="set-row set-row-trird">
@@ -21,6 +31,7 @@ const DiscoverProject = ({ data }) => {
                     <div className="col-8">
                         <div className="row  justify-content-between">
                         {data.map((item, index) => {
+                            console.log(item.img);
                             return (
                                 <div key={index} className="col-3" style={
                                     {
@@ -41,9 +52,11 @@ const DiscoverProject = ({ data }) => {
                                         height: '100%',
                                         }}>
                                     
-                                        <img src={`http://localhost:3777/get-img/${item.img}`} alt="" style={{ width: '100%', height: '70%' }} />
+                                        <img src={`http://localhost:3777/get-img/${item.img[0]}`} alt="" style={{ width: '100%', height: '70%' }} />
                                         {item.title}
-                                        {item.description}
+                                        {
+                                            cutString(item.description, 30)
+                                        }
                                     </Link>
                                 </div>
                             );

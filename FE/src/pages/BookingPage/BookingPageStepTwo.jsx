@@ -19,7 +19,7 @@ function BookingPageStepTwo(){
                 <div className="circle bg-primary text-dark">
                     1
                 </div>
-                <div className="circle">
+                <div className="circle bg-primary text-dark">
                     2
                 </div>
                 <div className="circle">
@@ -105,7 +105,9 @@ function BookingPageStepTwo(){
 
         <div className="row mt-5 justify-content-center">
             <div className="col-3 ps-5 ">
-                <button className ="btn-find-apppp">Continue</button>
+                <Link to="/booking/final">
+                    <button className ="btn-find-apppp">Continue</button>
+                </Link>
                 
             </div>
         </div>

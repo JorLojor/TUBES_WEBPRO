@@ -4,6 +4,16 @@ import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 const FeaturedProjectLP = ({ data }) => {
+
+    const cutString = (str, num) => {
+        if (str.length > num) {
+            return str.slice(0, num) + '...';
+        }
+        else {
+            return str;
+        }
+    }
+
     return (
         <>
             <div className="set-row set-row-four">
@@ -24,7 +34,9 @@ const FeaturedProjectLP = ({ data }) => {
                                 </div>
                                 <div className="row ps-2">
                                     <div className="col-12 mt-3">
-                                        {item.description}
+                                        {
+                                            cutString(item.description, 100)
+                                        }
                                     </div>
                                     <div className="col-12 mt-3">
                                         <div className="outer-bar-features">

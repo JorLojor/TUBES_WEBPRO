@@ -18,6 +18,7 @@ const ProjectDetail = () => {
     const [data, setData] = useState();
     const [dataFP, setDataFP] = useState([]);
     const url = `http://localhost:3777/api/project/${id}`;
+    const urlTanamModal = `http://localhost:3777/api/project/tanammodal/`
     const [years, setYears] = useState(0);
     const [type, setType] = useState('Bagi Hasil');
     const [total, setTotal] = useState(0);
@@ -65,7 +66,46 @@ const ProjectDetail = () => {
         axios.get(url)
         .then((res) => {
             setData(res.data.project);
-            // console.log(res.data.project);
+            console.log(res.data.project);
+        })
+        .catch((err) => {
+            console.error('Error fetching data:', err);
+        });
+    }
+
+    const [dataUser, setDataUser] = useState();
+
+    const getUserByName = async () => {
+        // ambil di local storage
+        const user = localStorage.getItem('user');
+
+        console.log('user dari local storage:', user);
+        
+        axios.get(`http://localhost:3777/api/users/nameUser/${user}`)
+        .then((res) => {
+            setDataUser(res.data.data);
+            console.log(res.data.data);
+        })
+        .catch((err) => {
+            console.error('Error fetching data:', err);
+        });
+    }
+
+    useEffect(() => {
+        getUserByName();
+    }, []);
+
+    // console.log(dataUser._id);
+
+
+
+    const postDataTanamModal = async () => {
+        axios.post(urlTanamModal + dataUser._id+"/"+ data._id , {
+            uang_modal: invest,
+        })
+        .then((res) => {
+            console.log(res);
+            console.log(res.data);
         })
         .catch((err) => {
             console.error('Error fetching data:', err);
@@ -309,12 +349,11 @@ const ProjectDetail = () => {
                             </div>
 
                             <div className="cover-btn-invest text-center">
-                                <button className ="btn-find-ap">
-                                    <Link to="/booking/payment" className="text-decoration-none text-white"
-                                    >                    
-                                        Get Started
+                                    <Link to="/booking/payment" className="text-decoration-none text-white">                    
+                                        <button className ="btn-find-ap" onClick={postDataTanamModal}>
+                                                Get Started
+                                        </button>
                                     </Link>
-                                </button>
                             </div>
 
 

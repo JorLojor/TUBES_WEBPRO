@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import img from '../../assets/iconbKP.png'
 import './BookingPageStepThree.css'
 
@@ -26,7 +27,9 @@ function BookingPageStepThree () {
                 </div>
                 <div className ="row justify-content-center">
                     <div className ="col-2">
-                        <button className  ="btn-find-ap">Continue</button>
+                        <Link to ="/">
+                            <button className  ="btn-find-ap">Continue</button>
+                        </Link>
                     </div>
                 </div>
             </div>
