@@ -17,8 +17,8 @@ exports.getAllUser = async (req, res) => {
         const dataUser = await db.user.find()
         .skip(offset)
         .limit(limit)
-        // .populate('tanam_modal')
-        // .populate('pinjam_modal')
+        .populate ('TanamModal')
+        .populate('PinjamModal')
         .exec();
         const dataResponse = {
             dataUser: dataUser,
@@ -36,7 +36,7 @@ exports.getAllUser = async (req, res) => {
 exports.getUserById = async (req, res) => {
     try{
         const userId = req.params.id;
-        const dataUser = await db.user.findById(userId);
+        const dataUser = await db.user.findById(userId).populate('TanamModal').populate('PinjamModal');
         responseSuccess(res,dataUser,200,"Success get user by id !")
     }catch(error){
         responseError(res,error)

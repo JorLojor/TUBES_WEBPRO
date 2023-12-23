@@ -1,10 +1,20 @@
 const Project = require('../../models/FeaturedProject/Project'); 
+const User = require('../../models/user/userModels');
 const { uploadProjectImages } = require('../../middleware/fileUpload');
+const db = require('../../models/index')
+const PinjamModal = db.peminjam;
+
 
 exports.createProject = async (req, res) => {
     try {
         uploadProjectImages(req, res, async function (err) {
             const { title, description, price } = req.body;
+            const { id } = req.params; // id user
+
+            const dataPinjamModal = await User.findById(id);
+            if (!dataPinjamModal) {
+                return res.status(404).json({ success: false, message: 'User tidak ditemukan' });
+            }
 
             if (err) {
                 return res.status(400).json({ success: false, message: err.message });
@@ -14,8 +24,16 @@ exports.createProject = async (req, res) => {
                 return res.status(400).json({ success: false, message: 'Title, description, and price are required fields' });
             }
 
-            const images = req.files; 
+            // Periksa apakah req.files terdefinisi
+            const images = req.files;
+            if (!images) {
+                return res.status(400).json({ success: false, message: 'No images uploaded' });
+            }
+
             const imgArray = images.map((image) => image.filename);
+
+
+
 
             const project = new Project({
                 title: title,
@@ -24,6 +42,20 @@ exports.createProject = async (req, res) => {
                 price: price,
             });
 
+            let total_pinjam = price * 0.1;
+
+            const UserPinjamModal = new PinjamModal({
+                total_pinjam: total_pinjam,
+                statusPinjam: "belumselesai",
+                project: project._id,
+            });
+
+            dataPinjamModal.PinjamModal = UserPinjamModal._id;
+            project.Owner = UserPinjamModal._id;
+
+            
+            await UserPinjamModal.save();
+            await dataPinjamModal.save();
             await project.save();
             res.status(201).json({ success: true, project });
         });
@@ -32,6 +64,7 @@ exports.createProject = async (req, res) => {
         res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
 };
+
 
 
 
