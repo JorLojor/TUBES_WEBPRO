@@ -28,6 +28,9 @@ const Profile = () => {
             .catch((err) => {
                 console.log(err);
             });
+
+
+            
     };
 
     // console.log(user.name);
