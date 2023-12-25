@@ -16,7 +16,7 @@ const ChoseUs = () => {
 
                                 <li className='d-block'>
                                     <div className="d-flex">
-                                        <div className="boxch-no">
+                                        <div className="boxch-no pt-2">
                                             1
                                         </div>
                                         <h2 className='mt-3 ms-5'>Trustworthy</h2>
@@ -31,7 +31,7 @@ const ChoseUs = () => {
 
                                 <li className='d-block'>
                                     <div className="d-flex">
-                                        <div className="boxch-no">
+                                        <div className="boxch-no pt-2">
                                             2
                                         </div>
                                         <h2 className='mt-3 ms-5'>Wide Networking</h2>
@@ -46,7 +46,7 @@ const ChoseUs = () => {
 
                                 <li className='d-block'>
                                     <div className="d-flex">
-                                        <div className="boxch-no">
+                                        <div className="boxch-no pt-2">
                                             3
                                         </div>
                                         <h2 className='mt-3 ms-5'>24/5 Customer Service</h2>
