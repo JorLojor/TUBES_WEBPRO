@@ -4,7 +4,6 @@ const jwt = require('jsonwebtoken');
 const responseSuccess = require('../../res/responseSucces')
 const responseError = require('../../res/responseError')
 require('dotenv').config();
-
 exports.getAllUser = async (req, res) => {
     try{
         const page = parseInt(req.query.page) || 1;
@@ -70,6 +69,31 @@ exports.registerUser = async (req, res) => {
             email: email,
         });
         responseSuccess(res, 200, 'Success register user ! \t\n', dataUser)
+    }catch(error){
+        responseError(res, 500, 'Internal server error ! \t\n', error.message)
+    }
+}
+
+exports.updateUser = async (req, res) => {
+    try{
+        const userId = req.params.id;
+        const { age, phone, address} = req.body;
+        const dataUser = await db.user.findByIdAndUpdate(userId, {
+            age: age,
+            phone: phone,
+            address: address,
+        }, {new: true});
+        responseSuccess(res, 200, 'Success update user ! \t\n', dataUser)
+    }catch(error){
+        responseError(res, 500, 'Internal server error ! \t\n', error.message)
+    }
+}
+
+exports.deleteUser = async (req, res) => {
+    try{
+        const userId = req.params.id;
+        const dataUser = await db.user.findByIdAndDelete(userId);
+        responseSuccess(res, 200, 'Success delete user ! \t\n', dataUser)
     }catch(error){
         responseError(res, 500, 'Internal server error ! \t\n', error.message)
     }
