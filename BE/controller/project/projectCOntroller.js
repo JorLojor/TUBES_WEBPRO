@@ -21,8 +21,8 @@ exports.createProject = async (req, res) => {
                 return res.status(400).json({ success: false, message: err.message });
             }
 
-            if (!title || !description || !price) {
-                return res.status(400).json({ success: false, message: 'Title, description, and price are required fields' });
+            if (!title || !description || isNaN(price)) {
+                return res.status(400).json({ success: false, message: 'Title, description, and valid price are required fields' });
             }
 
             // Periksa apakah req.files terdefinisi
@@ -33,8 +33,12 @@ exports.createProject = async (req, res) => {
 
             const imgArray = images.map((image) => image.filename);
 
-
-
+            let total_pinjam;
+            if (!isNaN(price)) {
+                total_pinjam = price * 0.1;
+            } else {
+                total_pinjam = 0; // atau tindakan yang sesuai
+            }
 
             const project = new Project({
                 title: title,
@@ -43,18 +47,15 @@ exports.createProject = async (req, res) => {
                 price: price,
             });
 
-            let total_pinjam = price * 0.1;
-
             const UserPinjamModal = new PinjamModal({
                 total_pinjam: total_pinjam,
                 statusPinjam: "belumselesai",
-                project: project._id,
             });
+            UserPinjamModal.project.push(project._id);
 
             dataPinjamModal.PinjamModal = UserPinjamModal._id;
             project.Owner = UserPinjamModal._id;
 
-            
             await UserPinjamModal.save();
             await dataPinjamModal.save();
             await project.save();
@@ -65,6 +66,7 @@ exports.createProject = async (req, res) => {
         res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
 };
+
 
 
 // Controller untuk memodalkan proyek
@@ -150,6 +152,7 @@ exports.getProjectById = async (req, res) => {
         res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
 };
+
 
 
 

@@ -46,7 +46,7 @@ const FeaturedProjectLP = ({ data }) => {
                                     <div className="col-11 mt-2">
                                         <div className="row justify-content-between set-data-per-features">
                                             <div className="col-2 text-start set-pecents"> 75% </div>
-                                            <div className="col-2 text-end set-price">{item.price}</div>
+                                            <div className="col-5 text-end set-price">{item.price}</div>
                                         </div>
                                     </div>
                                 </div>

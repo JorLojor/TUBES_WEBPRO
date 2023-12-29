@@ -19,11 +19,11 @@ const MainContent = ()=>{
                                     achievements, Start your business here
                                 </p>
                             </div>
-                            <div className="d-flex justify-content-start" style={{marginTop:'50px'}}>
+                            <div className="d-flex justify-content-start gap-4" style={{marginTop:'50px'}}>
                                
-                                <button className="btn-findap">Find project</button>
+                                <button className="btn-findap text-light">Find project</button>
                               
-                                <button className="btn-howitw">How its works</button>
+                                <button className="btn-howitw text-light">How its works</button>
                             </div>
                         </div>
                    </div>

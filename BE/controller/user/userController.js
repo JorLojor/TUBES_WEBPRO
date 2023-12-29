@@ -35,7 +35,14 @@ exports.getAllUser = async (req, res) => {
 exports.getUserById = async (req, res) => {
     try{
         const userId = req.params.id;
-        const dataUser = await db.user.findById(userId).populate('TanamModal').populate('PinjamModal');
+        // mendapatkan semua project dalam bentuk array  yang ada di PinjamModal
+        const dataUser = await db.user.findById(userId).populate('TanamModal').populate([{
+            path: 'PinjamModal',
+            populate: {
+                path: 'project',
+                model: 'Project'
+            }
+        }]);
         responseSuccess(res,dataUser,200,"Success get user by id !")
     }catch(error){
         responseError(res,error)
