@@ -40,18 +40,21 @@ const FormLengkapiProfile = ({ id, onClose }) => {
             style={{
                 position: 'absolute',
                 width: '100vw',
-                height: '100%',
+                height: '100vh',
                 zIndex: '999999',
-                top: '0',
-                left: '0',
+                top: '-19%',
+                left: '-85%',
                 backgroundColor: 'rgba(0,0,0,0.5)',
             }}
         >
             <div className="cardpopup">
-                <button className="closeButton" onClick={onClose}>
-                    X
-                </button>
-                <form className="form" onSubmit={handleSubmit}>
+                <div className="d-flex justify-content-between" style={{background: 'rgba(21, 44, 91, 0.60)',padding:'10px'}}>
+                    <h3 className='text-light my-auto' style={{fontSize:'25px'}}>lengkapi profile</h3>
+                    <button className="closeButton p-3" onClick={onClose} style={{fontWeight:'600',backgroundColor:'rgb(233, 63, 63)',borderRadius:'10px'}}>
+                        X
+                    </button>
+                </div>
+                <form className="form px-4 set-input-lkp" onSubmit={handleSubmit}>
                     <input
                         type="text"
                         id="ageinput"
@@ -78,7 +81,9 @@ const FormLengkapiProfile = ({ id, onClose }) => {
                     />
 
                 </form>
-                    <button type="submit" onClick={handleSubmit}>Confirm</button>
+                <div className="px-4 mt-5">
+                    <button className='set-btn-flp' type="submit" onClick={handleSubmit}>Confirm</button>
+                </div>
             </div>
         </div>
     );

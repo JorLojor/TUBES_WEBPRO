@@ -66,8 +66,8 @@ const Profile = () => {
         if (data.age === undefined && data.phone === undefined && data.address === undefined) {
             return (
                 <>
-                    <button onClick={() => setShowForm(true)}>
-                        <h3>lengkapi profile anda</h3>
+                    <button className='btn-warning ' onClick={() => setShowForm(true)}  style={{borderRadius:'10px'}}>
+                        <h3 className='text-light m-auto'>lengkapi profile anda !</h3>
                     </button>
 
                     {showForm && <FormLengkapiProfile id={id} onClose={() => setShowForm(false)} />}
@@ -88,7 +88,14 @@ const Profile = () => {
             </div>
 
             <div className="container-fluid" style={{ marginTop: '144px',paddingTop:'30px',paddingBottom:'50px',background: "#F5F5FB" }}>
-                <div className="container-fluid">
+                <div className="ps-5" style={{
+                    position: 'absolute',
+                    width: '100vw',
+                    height: '100%',
+                    left: '85%',
+                    top: '250px',
+
+                }}>
                     {lebgkapiProfile()}
                 </div>
 
