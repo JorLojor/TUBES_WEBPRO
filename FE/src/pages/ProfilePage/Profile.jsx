@@ -66,7 +66,7 @@ const Profile = () => {
         if (data.age === undefined && data.phone === undefined && data.address === undefined) {
             return (
                 <>
-                    <button className='btn-warning ' onClick={() => setShowForm(true)}  style={{borderRadius:'10px'}}>
+                    <button className='btn-warning p-3' onClick={() => setShowForm(true)}  style={{borderRadius:'10px'}}>
                         <h3 className='text-light m-auto'>lengkapi profile anda !</h3>
                     </button>
 
@@ -87,12 +87,12 @@ const Profile = () => {
                 <Navbar />
             </div>
 
-            <div className="container-fluid" style={{ marginTop: '144px',paddingTop:'30px',paddingBottom:'50px',background: "#F5F5FB" }}>
+            <div className="container-fluid" style={{ marginTop: '144px',paddingTop:'30px',paddingBottom:'50px',background: "#F5F5FB",paddingLeft:'200px',paddingRight:'200px' }}>
                 <div className="ps-5" style={{
                     position: 'absolute',
                     width: '100vw',
                     height: '100%',
-                    left: '85%',
+                    left: '76%',
                     top: '250px',
 
                 }}>
@@ -123,7 +123,7 @@ const Profile = () => {
                     
                 )}
                 
-                <div className="row px-5 pt-5 justify-content-around">
+                <div className="row pt-5 justify-content-between">
                     
 
                     <div className="col-3 boxketeranganapakek">
@@ -157,11 +157,11 @@ const Profile = () => {
                     </div>
                 </div>
 
-                <div className="px-5 pt-5 justify-content-around">
+                <div className=" pt-5 mt-5 justify-content-around">
                     <h3 className='ms-1'>Your investation project</h3>
 
-                    <ul>
-                        <li className='row listproject justify-content-between px-5 my-3'>
+                    <ul >
+                        <li className='mt-5 row listproject justify-content-between px-5 my-3'>
                             <div className='col-3 d-flex'>
                                 <img src={imgprofile} alt="" style={{ width: "60px", height: "60px", borderRadius: "10px" }} className="mt-2 me-2" />
                                 <p className='mt-4'> exampp features</p>
@@ -242,7 +242,7 @@ const Profile = () => {
 
 
 
-                <div className="px-5 pt-5 justify-content-around">
+                <div className="pt-5 justify-content-around">
                     <div className="d-flex justify-content-between p-0">
 
                         <h3 className='ms-1'>Your project</h3>
@@ -251,7 +251,7 @@ const Profile = () => {
                         >+ create project</button>
                     </div>
 
-                    <div className="row  p-1 mt-5 justify-content-between">
+                    <div className="row mt-5 justify-content-between">
                         {/* nanti di maps untuk menampilkan project buatan user itu sendiri */}
                         <Link className="col-2 " to={`/project-detail/`}>
                             <div className="box-content-features m-auto" style={{boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.10)',}}>
