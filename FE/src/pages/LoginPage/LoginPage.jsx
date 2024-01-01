@@ -54,7 +54,7 @@ const LoginPage = () => {
                     </div>
                     <div className="col-6">
                         <div className="box-login-page">
-                            <h1>Buat Akun</h1>
+                            <h1>login</h1>
                             <p> 
                                 Follow the instructions to make it easier to register and you will be 
                                 able to explore CrowdLab
