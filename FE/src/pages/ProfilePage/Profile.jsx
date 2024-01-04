@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -31,14 +32,6 @@ const Profile = () => {
     const [loading, setLoading] = useState(true);
     const [showForm, setShowForm] = useState(false);
     // const [idPinjamModal, setIdPinjamModal] = useState();
-
-    const datadummy = [
-        {
-            id: 1,
-            title: 'mancing',
-
-        },
-    ]
 
 
     useEffect(() => {
@@ -197,56 +190,7 @@ const Profile = () => {
                             </div>
 
                         </li>
-                        <li className='row listproject justify-content-between px-5 my-3'>
-                            <div className='col-3 d-flex'>
-                                <img src={imgprofile} alt="" style={{ width: "60px", height: "60px", borderRadius: "10px" }} className="mt-2 me-2" />
-                                <p className='mt-4'> metafers</p>
-                            </div>
-                            <div className='col-3 text-center'>
-                                <p className='mt-4'>h beliau saha</p>
-                            </div>
-                            <div className='col-3 text-center'>
-                                <p className='mt-4'>909000</p>
-                            </div>
-                            <div className='col-3 text-end'>
-                                <button className='mt-3' style={{
-                                    backgroundColor: '#F5F5FB',
-                                    border: 'none',
-                                    borderRadius: '10px',
-                                    width: '100px',
-                                    height: '40px',
-                                    color: '#A8A8A8'
-                                }}>
-                                    {">"}
-                                </button>
-                            </div>
-
-                        </li>
-                        <li className='row listproject justify-content-between px-5 my-3'>
-                            <div className='col-3 d-flex'>
-                                <img src={imgprofile} alt="" style={{ width: "60px", height: "60px", borderRadius: "10px" }} className="mt-2 me-2" />
-                                <p className='mt-4'>nanaonan</p>
-                            </div>
-                            <div className='col-3 text-center'>
-                                <p className='mt-4'>si fulan</p>
-                            </div>
-                            <div className='col-3 text-center'>
-                                <p className='mt-4'>35000000</p>
-                            </div>
-                            <div className='col-3 text-end'>
-                                <button className='mt-3' style={{
-                                    backgroundColor: '#F5F5FB',
-                                    border: 'none',
-                                    borderRadius: '10px',
-                                    width: '100px',
-                                    height: '40px',
-                                    color: '#A8A8A8'
-                                }}>
-                                    {">"}
-                                </button>
-                            </div>
-
-                        </li>
+                        
                     </ul>
 
                 </div>
@@ -262,39 +206,9 @@ const Profile = () => {
                         </Link>
                     </div>
 
-                    <div className="row mt-5 justify-content-between">
-                        <YourProject data={datadummy} />
-
-                        {/* nanti di maps untuk menampilkan project buatan user itu sendiri */}
-                        {/* <Link className="col-2 " to={`/project-detail/`}>
-                            <div className="box-content-features m-auto" style={{boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.10)',}}>
-                                <div className="image-content-features">
-                                    <img src={img1} alt="" style={{ width: '100%', height: '100%' }} />
-                                    <div className="text-image-content">
-                                        mancing
-                                    </div>
-                                </div>
-                                <div className="row ps-2">
-                                    <div className="col-12 mt-3 text-dark">
-                                        wes kuliah, wes kerja, wes nikah, wes mancing
-                                    </div>
-                                    <div className="col-12 mt-3">
-                                        <div className="outer-bar-features">
-                                            <div className="inner-bar-features"></div>
-                                        </div>
-                                    </div>
-                                    <div className="col-11 mt-2">
-                                        <div className="row set-data-per-features justify-content-between">
-                                            <div className="col-4 text-start text-start set-pecents"><p>75%</p></div>
-                                            <div className="col-5 text-end set-price">2000000</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </Link> */}
-
-                       
-                    </div>
+                    
+                    <YourProject idUser={id} />                       
+                   
                 </div>
 
 

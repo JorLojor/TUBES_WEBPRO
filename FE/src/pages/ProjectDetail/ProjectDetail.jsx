@@ -22,21 +22,23 @@ const ProjectDetail = () => {
     const [years, setYears] = useState(0);
     const [type, setType] = useState('Bagi Hasil');
     const [total, setTotal] = useState(0);
-    const [invest, setInvest] = useState(0);
+    const [investModal, setInvestModal] = useState(0);
+
+   
 
     const youWillRecive = () => {
         if (type === 'Bagi Hasil') {
-            setTotal(years * invest / 100);
+            setTotal(years * investModal / 100);
         } else if (type === 'Donasi') {
             setTotal("Pahala");
         } else if (type === 'Saham') {
-            setTotal(years * invest / 100);
+            setTotal(years * investModal / 100);
         }
     }
 
     useEffect(() => {
         youWillRecive();
-    }, [years, invest, type]);
+    }, [years, investModal, type]);
 
 
 
@@ -91,6 +93,8 @@ const ProjectDetail = () => {
         });
     }
 
+
+
     useEffect(() => {
         getUserByName();
     }, []);
@@ -101,11 +105,14 @@ const ProjectDetail = () => {
 
     const postDataTanamModal = async () => {
         axios.post(urlTanamModal + dataUser._id+"/"+ data._id , {
-            uang_modal: invest,
+            uang_modal: investModal,
         })
         .then((res) => {
             console.log(res);
             console.log(res.data);
+            //pindah ke halaman payment
+            alert('Berhasil Menanam Modal');
+            window.location.href = `/booking/payment/`;
         })
         .catch((err) => {
             console.error('Error fetching data:', err);
@@ -223,14 +230,13 @@ const ProjectDetail = () => {
 
                         <div className="detail-pd-tl mt-5">
                             <div className="row justify-content-between">
-                                <div className="col-4 ">
-                                    <div className="ic-dolars d-flex">
+                                <div className="col-8">
+                                    <div className="ic-dolars d-flex gap-3">
                                         <img src={coins} alt=""/>
-                                        <h3 className="ms-3">
-                                            $ 65,235
-                                        </h3>
+                                            {data && (<h1>{data.price} idr</h1>)}
+                                        
                                     </div>
-                                    <p className="ms-5">Total Raised</p>
+                                    <h3 className="ms-5">price</h3>
                                     
                                 </div>
                                 <div className="col-4 ">
@@ -275,7 +281,7 @@ const ProjectDetail = () => {
                                 <h2 className="mt-4"> Start Invest</h2>
                                 <input type="text" 
                                 className="mt-4"
-                                onChange={(e)=>{setInvest(e.target.value)}}
+                                onChange={(e)=>{setInvestModal(e.target.value)}}
                                 placeholder="xxxxx$" style={{
                                     paddingLeft:'20px'
                                 }}/>
@@ -349,11 +355,11 @@ const ProjectDetail = () => {
                             </div>
 
                             <div className="cover-btn-invest text-center">
-                                    <Link to="/booking/payment" className="text-decoration-none text-white">                    
+                                    {/* <Link to="/booking/payment" className="text-decoration-none text-white">                     */}
                                         <button className ="btn-find-ap" onClick={postDataTanamModal}>
                                                 Get Started
                                         </button>
-                                    </Link>
+                                    {/* </Link> */}
                             </div>
 
 

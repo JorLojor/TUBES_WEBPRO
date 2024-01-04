@@ -98,10 +98,13 @@ exports.createProject = async (req, res) => {
 
 // Controller untuk memodalkan proyek
 exports.TanamModal = async (req, res) => {
-    try{
-        const { idUser } = req.params; // id user
-        const { idProject } = req.params; // id project
-        const { uang_modal } = req.body; // uang modal
+    try {
+        const { idUser, idProject } = req.params;
+        const { uang_modal } = req.body;
+
+        console.log("idUser", idUser);
+        console.log("idProject", idProject);
+        console.log("uang_modal", uang_modal);
 
         if (!idUser || !idProject) {
             return res.status(400).json({ success: false, message: 'idUser dan idProject harus terdefinisi' });
@@ -111,36 +114,93 @@ exports.TanamModal = async (req, res) => {
         if (!dataUser) {
             return res.status(404).json({ success: false, message: 'User tidak ditemukan' });
         }
-        
+
+        console.log("dataUser: \n", dataUser);
+
         const dataProject = await Project.findById(idProject);
         if (!dataProject) {
             return res.status(404).json({ success: false, message: 'Project tidak ditemukan' });
         }
 
+        console.log("dataProject: \n", dataProject);
+
         let uang_menetap = 0;
-        //jika uang modal lebih kecil dari harga proyek
-        if(uang_modal < dataProject.price){
+
+        if (uang_modal < dataProject.price) {
             return res.status(400).json({ success: false, message: 'Uang modal harus lebih besar dari harga proyek' });
         }
-        //jika uang modal lebih besar dari harga proyek
+
         uang_menetap = uang_modal - dataProject.price;
 
-        // buat user penanamModal
-        const newPenanamModal = new PenanamModal({
-            uang_menetap: uang_menetap,
-            uang_modal: uang_modal,
-            project: dataProject._id,
-        });
+        if (!dataUser.TanamModal) {
+            console.log("belum ada PenanamModal");
+            const newPenanamModal = await PenanamModal.create({
+                uang_menetap: uang_menetap,
+                uang_modal: uang_modal,
+                project: [dataProject._id], // Simpan ID proyek dalam array
+            });
 
-        dataProject.pemodal.push(newPenanamModal._id);
-        await newPenanamModal.save();
-        await dataProject.save();
-        res.status(201).json({ success: true, newPenanamModal });
-    }catch(error){
+            console.log("model newPenanamModal", newPenanamModal);
+
+            dataUser.TanamModal = newPenanamModal._id;
+            dataProject.pemodal.push(newPenanamModal);
+
+            await dataUser.save();
+            await dataProject.save();
+
+            console.log("saved new data");
+
+            return res.status(201).json({ success: true, dataProject });
+        } else {
+            console.log("sudah ada PenanamModal");
+            const dataUserTanamModal = await PenanamModal.findById(dataUser.TanamModal);
+            if (!dataUserTanamModal) {
+                return res.status(404).json({ success: false, message: 'User TanamModal tidak ditemukan' });
+            }
+            dataUserTanamModal.uang_menetap += uang_menetap;
+            dataUserTanamModal.uang_modal += uang_modal;
+            dataUserTanamModal.project.push(dataProject._id);
+            dataProject.pemodal.push(dataUserTanamModal._id);
+            await dataUserTanamModal.save();
+            await dataProject.save();
+            return res.status(200).json({ success: true, dataProject });
+        }
+    } catch (error) {
         console.error(error);
         res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
-}
+};
+
+// Controller untuk mendapatkan proyek yang dimodali dengan request id user
+
+exports.getProjectsByPemodal = async (req, res) => {
+    try {
+        const { pemodalId } = req.params;
+
+        // Validasi apakah pemodalId adalah format ObjectId yang valid
+        if (!mongoose.Types.ObjectId.isValid(pemodalId)) {
+            return res.status(400).json({ success: false, message: 'Invalid pemodalId format' });
+        }
+
+        // Cari user pemodal berdasarkan pemodalId
+        const pemodal = await User.findById(pemodalId);
+        if (!pemodal) {
+            return res.status(404).json({ success: false, message: 'User pemodal not found' });
+        }
+
+        // Cari proyek yang memiliki pemodalId dalam array pemodal
+        const projects = await Project.find({ pemodal: pemodalId });
+        if (!projects || projects.length === 0) {
+            return res.status(404).json({ success: false, message: 'No projects found for the specified pemodalId' });
+        }
+
+        res.status(200).json({ success: true, projects });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, message: 'Internal Server Error' });
+    }
+};
+
 
 // Controller untuk mendapatkan proyek dengan id userPinjamModal dengan request id user
 exports.getMyProject = async (req, res) => {

@@ -6,7 +6,7 @@ const ProjectSchema = new mongoose.Schema({
     img: [{ type: String, required: true }],
     price : { type: Number, required: true },
     Owner: { type: mongoose.Schema.Types.ObjectId, ref: 'PinjamModal' },
-    pemodal: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+    pemodal: [{ type: mongoose.Schema.Types.ObjectId, ref: 'PenanamModal' }],
 }, { timestamps: true, collection: 'projects'});
 
 const Project = mongoose.model('Project', ProjectSchema);
