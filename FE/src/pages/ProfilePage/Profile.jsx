@@ -5,6 +5,7 @@ import Navbar from "../../components/navbar/Navbar";
 import { useParams } from 'react-router-dom';
 import imgprofile from "../../assets/image306.png";
 import FormLengkapiProfile from "../../components/formLengkapiProfile/FormLengkapiProfile"; 
+import YourProject from '../../components/yourProject/YourProject';
 import Footer from "../../components/footer/Footer";
 import FormCreateProject from '../../components/FromCreateProject/FormCreateProject';
 import img1 from '../../assets/m3.png'
@@ -17,6 +18,7 @@ import { Link } from 'react-router-dom';
 import './Profile.css';
 
 const Profile = () => {
+    
     const { id } = useParams();
     const url = 'http://localhost:3777/api/users/';
 
@@ -29,6 +31,14 @@ const Profile = () => {
     const [loading, setLoading] = useState(true);
     const [showForm, setShowForm] = useState(false);
     // const [idPinjamModal, setIdPinjamModal] = useState();
+
+    const datadummy = [
+        {
+            id: 1,
+            title: 'mancing',
+
+        },
+    ]
 
 
     useEffect(() => {
@@ -51,6 +61,7 @@ const Profile = () => {
             setLoading(false);
         }
     };
+
 
     
 
@@ -243,8 +254,7 @@ const Profile = () => {
 
 
                 <div className="pt-5 justify-content-around">
-                    <div className="">
-
+                    <div>
                         <h3 className='ms-1'>Your project</h3>
                         <Link to={`/create-project/${id}`} className='btn btn-warning p-3' style={{borderRadius:'10px'}}>
                             <h3 className='text-light m-auto'>+ Create Project</h3>
@@ -253,8 +263,10 @@ const Profile = () => {
                     </div>
 
                     <div className="row mt-5 justify-content-between">
+                        <YourProject data={datadummy} />
+
                         {/* nanti di maps untuk menampilkan project buatan user itu sendiri */}
-                        <Link className="col-2 " to={`/project-detail/`}>
+                        {/* <Link className="col-2 " to={`/project-detail/`}>
                             <div className="box-content-features m-auto" style={{boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.10)',}}>
                                 <div className="image-content-features">
                                     <img src={img1} alt="" style={{ width: '100%', height: '100%' }} />
@@ -279,111 +291,8 @@ const Profile = () => {
                                     </div>
                                 </div>
                             </div>
-                        </Link>
-                        <Link className="col-2 " to={`/project-detail/`}>
-                            <div className="box-content-features m-auto" style={{boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.10)',}}>
-                                <div className="image-content-features">
-                                    <img src={img2} alt="" style={{ width: '100%', height: '100%' }} />
-                                    <div className="text-image-content">
-                                        mancing
-                                    </div>
-                                </div>
-                                <div className="row ps-2">
-                                    <div className="col-12 mt-3 text-dark">
-                                        wes kuliah, wes kerja, wes nikah, wes mancing
-                                    </div>
-                                    <div className="col-12 mt-3">
-                                        <div className="outer-bar-features">
-                                            <div className="inner-bar-features"></div>
-                                        </div>
-                                    </div>
-                                    <div className="col-11 mt-2">
-                                        <div className="row set-data-per-features justify-content-between">
-                                            <div className="col-4 text-start text-start set-pecents"><p>75%</p></div>
-                                            <div className="col-5 text-end set-price">2000000</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </Link>
-                        <Link className="col-2 " to={`/project-detail/`}>
-                            <div className="box-content-features m-auto" style={{boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.10)',}}>
-                                <div className="image-content-features">
-                                    <img src={img5} alt="" style={{ width: '100%', height: '100%' }} />
-                                    <div className="text-image-content">
-                                        mancing
-                                    </div>
-                                </div>
-                                <div className="row ps-2">
-                                    <div className="col-12 mt-3 text-dark">
-                                        wes kuliah, wes kerja, wes nikah, wes mancing
-                                    </div>
-                                    <div className="col-12 mt-3">
-                                        <div className="outer-bar-features">
-                                            <div className="inner-bar-features"></div>
-                                        </div>
-                                    </div>
-                                    <div className="col-11 mt-2">
-                                        <div className="row set-data-per-features justify-content-between">
-                                            <div className="col-4 text-start text-start set-pecents"><p>75%</p></div>
-                                            <div className="col-5 text-end set-price">2000000</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </Link>
-                        <Link className="col-2 " to={`/project-detail/`}>
-                            <div className="box-content-features m-auto" style={{boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.10)',}}>
-                                <div className="image-content-features">
-                                    <img src={img3} alt="" style={{ width: '100%', height: '100%' }} />
-                                    <div className="text-image-content">
-                                        mancing
-                                    </div>
-                                </div>
-                                <div className="row ps-2">
-                                    <div className="col-12 mt-3 text-dark">
-                                        wes kuliah, wes kerja, wes nikah, wes mancing
-                                    </div>
-                                    <div className="col-12 mt-3">
-                                        <div className="outer-bar-features">
-                                            <div className="inner-bar-features"></div>
-                                        </div>
-                                    </div>
-                                    <div className="col-11 mt-2">
-                                        <div className="row set-data-per-features justify-content-between">
-                                            <div className="col-4 text-start text-start set-pecents"><p>75%</p></div>
-                                            <div className="col-5 text-end set-price">2000000</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </Link>
-                        <Link className="col-2 " to={`/project-detail/`}>
-                            <div className="box-content-features m-auto" style={{boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.10)',}}>
-                                <div className="image-content-features">
-                                    <img src={img4} alt="" style={{ width: '100%', height: '100%' }} />
-                                    <div className="text-image-content">
-                                        mancing
-                                    </div>
-                                </div>
-                                <div className="row ps-2">
-                                    <div className="col-12 mt-3 text-dark">
-                                        wes kuliah, wes kerja, wes nikah, wes mancing
-                                    </div>
-                                    <div className="col-12 mt-3">
-                                        <div className="outer-bar-features">
-                                            <div className="inner-bar-features"></div>
-                                        </div>
-                                    </div>
-                                    <div className="col-11 mt-2">
-                                        <div className="row set-data-per-features justify-content-between">
-                                            <div className="col-4 text-start text-start set-pecents"><p>75%</p></div>
-                                            <div className="col-5 text-end set-price">2000000</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </Link>
+                        </Link> */}
+
                        
                     </div>
                 </div>
