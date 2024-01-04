@@ -21,6 +21,9 @@ import ContactUs from './pages/ContactUs/ContactUs';
 //profile
 import Profile from './pages/ProfilePage/Profile';
 
+//formCreateProject
+import FormCreateProject from './components/FromCreateProject/FormCreateProject';
+
 function App() {
 
     return (
@@ -35,6 +38,7 @@ function App() {
                     <Route path='/booking/payment' element={<AuthGuard><BookingPageStepTwo /></AuthGuard>} />
                     <Route path='/booking' element={<AuthGuard><BookingPageStepOne /></AuthGuard>} />
                     <Route path='/profile/:id' element={<AuthGuard><Profile /></AuthGuard>} />
+                    <Route path='/create-project/:id' element={<AuthGuard><FormCreateProject /></AuthGuard>} />
 
                     
                     <Route path='/project-detail/:id' element={<AuthGuard><ProjectDetail /></AuthGuard>} />

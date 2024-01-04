@@ -48,7 +48,6 @@ exports.getUserById = async (req, res) => {
         responseError(res,error)
     }
 }
-
 exports.getUserByName = async (req, res) => {
     try{
         const userName = req.params.name;
@@ -58,6 +57,63 @@ exports.getUserByName = async (req, res) => {
         responseError(res,error)
     }
 }
+exports.updateUser = async (req, res) => {
+    try{
+        const userId = req.params.id;
+        const { age, phone, address} = req.body;
+        const dataUser = await db.user.findByIdAndUpdate(userId, {
+            age: age,
+            phone: phone,
+            address: address,
+        }, {new: true});
+        responseSuccess(res, 200, 'Success update user ! \t\n', dataUser)
+    }catch(error){
+        responseError(res, 500, 'Internal server error ! \t\n', error.message)
+    }
+}
+exports.deleteUser = async (req, res) => {
+    try{
+        const userId = req.params.id;
+        const dataUser = await db.user.findByIdAndDelete(userId);
+        responseSuccess(res, 200, 'Success delete user ! \t\n', dataUser)
+    }catch(error){
+        responseError(res, 500, 'Internal server error ! \t\n', error.message)
+    }
+}
+
+exports.loginUser = async (req, res) => {
+    try {
+        const { name, password } = req.body;
+        switch(true){
+            case !name:
+                responseError(res, 400, 'Name tidak boleh kosong ! \t\n', 'masukkan name \t\n');
+                return ;
+            case !password:
+                responseError(res, 400, 'Password tidak boleh kosong ! \t\n', 'masukkan password \t\n');
+                return ;
+            }
+            const VerifyUser = await db.user.findOne({
+                name: name,
+            }).select('-token');
+            const comparePassword = await bcrypt.compare(password, VerifyUser.password);
+            comparePassword ? null : responseError(res, 400, 'Password salah ! \t\n', 'masukkan password yang benar \t\n');
+
+            const token = jwt.sign(
+                {id: VerifyUser._id}, 
+                "ngopiiiiiiiiiiiiiiiBrooooooo",
+                {expiresIn: '1d'}
+            );
+            await db.user.findByIdAndUpdate(VerifyUser._id, {token: token}, {new: true});
+            const dataResponse = {
+                token: token,
+                message: 'Success login user ! \t\n',
+                user: VerifyUser
+            }
+            responseSuccess(res, dataResponse, 200, 'Success login user ! \t\n')
+    }catch(error){
+        responseError(res, 500, 'Internal server error ! \t\n', error.message)
+    }
+};
 
 exports.registerUser = async (req, res) => {
     try{
@@ -80,69 +136,5 @@ exports.registerUser = async (req, res) => {
         responseError(res, 500, 'Internal server error ! \t\n', error.message)
     }
 }
-
-exports.updateUser = async (req, res) => {
-    try{
-        const userId = req.params.id;
-        const { age, phone, address} = req.body;
-        const dataUser = await db.user.findByIdAndUpdate(userId, {
-            age: age,
-            phone: phone,
-            address: address,
-        }, {new: true});
-        responseSuccess(res, 200, 'Success update user ! \t\n', dataUser)
-    }catch(error){
-        responseError(res, 500, 'Internal server error ! \t\n', error.message)
-    }
-}
-
-exports.deleteUser = async (req, res) => {
-    try{
-        const userId = req.params.id;
-        const dataUser = await db.user.findByIdAndDelete(userId);
-        responseSuccess(res, 200, 'Success delete user ! \t\n', dataUser)
-    }catch(error){
-        responseError(res, 500, 'Internal server error ! \t\n', error.message)
-    }
-}
-
-exports.loginUser = async (req, res) => {
-    try {
-        const { name, password } = req.body;
-        switch(true){
-            case !name:
-                responseError(res, 400, 'Name tidak boleh kosong ! \t\n', 'masukkan name \t\n');
-                return ;
-            case !password:
-                responseError(res, 400, 'Password tidak boleh kosong ! \t\n', 'masukkan password \t\n');
-                return ;
-            }
-
-            const VerifyUser = await db.user.findOne({
-                name: name,
-            }).select('-token');
-
-            const comparePassword = await bcrypt.compare(password, VerifyUser.password);
-            comparePassword ? null : responseError(res, 400, 'Password salah ! \t\n', 'masukkan password yang benar \t\n');
-
-            const token = jwt.sign(
-                {id: VerifyUser._id}, 
-                "ngopiiiiiiiiiiiiiiiBrooooooo",
-                {expiresIn: '1d'}
-            );
-            
-            await db.user.findByIdAndUpdate(VerifyUser._id, {token: token}, {new: true});
-            const dataResponse = {
-                token: token,
-                message: 'Success login user ! \t\n',
-                user: VerifyUser
-            }
-            responseSuccess(res, dataResponse, 200, 'Success login user ! \t\n')
-            
-
-    }catch(error){
-        responseError(res, 500, 'Internal server error ! \t\n', error.message)
-    }
-};
 
 module.exports = exports;

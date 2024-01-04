@@ -10,4 +10,6 @@ router.get('/datapenanam/data', adminController.getAllPenanam);
 router.get('/datapeminjam/data', adminController.getAllPeminjam);
 
 
+router.delete('/clear-all', adminController.deleteAlldata); // http://localhost:3000/api/admin/clear-all
+
 module.exports = router;

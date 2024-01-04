@@ -28,8 +28,7 @@ const Profile = () => {
     });
     const [loading, setLoading] = useState(true);
     const [showForm, setShowForm] = useState(false);
-    const [showFormCreateProject, setShowFormCreateProject] = useState(false);
-    const [idPinjamModal, setIdPinjamModal] = useState();
+    // const [idPinjamModal, setIdPinjamModal] = useState();
 
 
     useEffect(() => {
@@ -45,14 +44,15 @@ const Profile = () => {
                 phone: res.data.data.phone,
                 address: res.data.data.address,
             });
-            console.log(res.data.data.PinjamModal._id);
-            setIdPinjamModal(res.data.data.PinjamModal._id);
+            console.log(res.data.data._id);
             setLoading(false);
         } catch (err) {
             console.log(err.message);
             setLoading(false);
         }
     };
+
+    
 
 
 
@@ -243,12 +243,13 @@ const Profile = () => {
 
 
                 <div className="pt-5 justify-content-around">
-                    <div className="d-flex justify-content-between p-0">
+                    <div className="">
 
                         <h3 className='ms-1'>Your project</h3>
-                        <button className="btn-findap text-light" 
-                            onClick={() =>setShowFormCreateProject(true)}
-                        >+ create project</button>
+                        <Link to={`/create-project/${id}`} className='btn btn-warning p-3' style={{borderRadius:'10px'}}>
+                            <h3 className='text-light m-auto'>+ Create Project</h3>
+
+                        </Link>
                     </div>
 
                     <div className="row mt-5 justify-content-between">
@@ -390,7 +391,6 @@ const Profile = () => {
 
                 
             </div>
-            {showFormCreateProject && <FormCreateProject id={id} onClose={() => setShowFormCreateProject(false)} />}
             <Footer/>
             
         </>

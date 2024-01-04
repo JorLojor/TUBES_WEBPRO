@@ -5,7 +5,6 @@ const db = require('../../models/index')
 const PinjamModal = db.peminjam;
 const PenanamModal = db.penanam;
 
-
 exports.createProject = async (req, res) => {
     try {
         uploadProjectImages(req, res, async function (err) {
@@ -137,7 +136,6 @@ exports.getProjectsPagination = async (req, res) => {
         res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
 };
-
 // Controller untuk mendapatkan proyek berdasarkan ID
 exports.getProjectById = async (req, res) => {
     try {
@@ -152,10 +150,6 @@ exports.getProjectById = async (req, res) => {
         res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
 };
-
-
-
-
 // Controller untuk memperbarui proyek berdasarkan ID
 exports.updateProject = async (req, res) => {
     try {
@@ -181,7 +175,6 @@ exports.updateProject = async (req, res) => {
         res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
 };
-
 // Controller untuk menghapus proyek berdasarkan ID
 exports.deleteProject = async (req, res) => {
     try {

@@ -119,4 +119,30 @@ exports.getAllPenanam = async (req, res) => {
     }
 }
 
+
+exports.deleteAlldata = async (req,res)=>{
+    try{
+        // menghapus semua data user
+        const user = await db.user.deleteMany(); 
+        // menghapus semua data project
+        const project = await db.project.deleteMany();
+        // menghapus semua data modal
+        const modal = await db.peminjam.deleteMany();
+        // menghapus semua data tanam modal
+        const tanamModal = await db.penanam.deleteMany();
+
+        const data = {
+            user,
+            project,
+            modal,
+            tanamModal
+        }
+
+        responseSuccess(res,data,200,"Success delete all data !")
+
+    }catch(error){
+        responseError(res,error)
+    }
+}
+
 module.exports = exports;

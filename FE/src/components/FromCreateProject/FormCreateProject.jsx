@@ -2,9 +2,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import Navbar from '../navbar/Navbar';
+import {useParams} from 'react-router-dom'
 
-const FormCreateProject = ({ id, onClose }) => {
-    console.log(id);
+const FormCreateProject = () => {
+    const {id} = useParams();
+
+    console.log("id sudah di dapat",id);
     const [data, setData] = useState({
         title: '',
         description: '',
@@ -39,14 +43,14 @@ const FormCreateProject = ({ id, onClose }) => {
                 }
             }
 
-            const response = await axios.post(`http://localhost:3777/api/project/${id}`, formData, {
+            const response = await axios.post(`http://localhost:3777/api/project/create/${id}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-            alert('Create Successful!');
+            confirm('Create Success');
             console.log(response);
-            onClose(); // Close the form after successful submission
+            window.location.href = `/profile/${id}`;
         } catch (error) {
             console.error('Failed to create project!', error);
             alert('Create Failed');
@@ -55,21 +59,16 @@ const FormCreateProject = ({ id, onClose }) => {
 
     return (
         <>
-            <div
-                style={{
-                    position: 'absolute',
-                    width: '100vw',
-                    height: '100%',
-                    zIndex: '999999',
-                    top: '0',
-                    left: '0',
-                    backgroundColor: 'rgba(0,0,0,0.5)',
-                }}
-            >
+            <div className="container-fluid" style={{ position: 'fixed', zIndex: '1', backgroundColor: 'white', width: '100%', height: '10vh', top: '0', left: '0' }}>
+                <Navbar />
+            </div>
+
+            <div className="container-fluid" style={{ marginTop: '144px',paddingTop:'30px',paddingBottom:'50px',background: "#F5F5FB",paddingLeft:'200px',paddingRight:'200px' }}>
+
+            
+
                 <div className="cardpopup">
-                    <button className="closeButton" onClick={onClose}>
-                        X
-                    </button>
+                    
                     <form className="form" onSubmit={handleSubmit}>
                         <input
                             type="text"
@@ -109,14 +108,14 @@ const FormCreateProject = ({ id, onClose }) => {
                         </button>
                     </form>
                 </div>
+            
+
+
+
             </div>
         </>
     );
 };
 
-FormCreateProject.propTypes = {
-    id: PropTypes.string.isRequired,
-    onClose: PropTypes.func.isRequired,
-};
 
 export default FormCreateProject;
