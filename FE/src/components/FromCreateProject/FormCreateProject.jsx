@@ -3,7 +3,9 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import Navbar from '../navbar/Navbar';
+import Footer from '../footer/Footer';
 import {useParams} from 'react-router-dom'
+import './FormCreateProject.css';
 
 const FormCreateProject = () => {
     const {id} = useParams();
@@ -59,42 +61,58 @@ const FormCreateProject = () => {
 
     return (
         <>
+            <div className="" style={{
+                background: "#F5F5FB"
+            }}>
             <div className="container-fluid" style={{ position: 'fixed', zIndex: '1', backgroundColor: 'white', width: '100%', height: '10vh', top: '0', left: '0' }}>
                 <Navbar />
             </div>
 
-            <div className="container-fluid" style={{ marginTop: '144px',paddingTop:'30px',paddingBottom:'50px',background: "#F5F5FB",paddingLeft:'200px',paddingRight:'200px' }}>
+            <div className="container-fluid " style={{ marginTop: '144px',paddingTop:'50px',background: "#F5F5FB",paddingLeft:'200px',paddingRight:'200px', paddingBottom:'100px' }}>
 
-            
+            <h1>Create Your New Project</h1>
+            <br />
 
-                <div className="cardpopup">
+                <div className="cardpopupc">
                     
-                    <form className="form" onSubmit={handleSubmit}>
-                        <input
-                            type="text"
-                            id="titleinput"
-                            name="title"
-                            placeholder="Title"
-                            onChange={updatedForm}
-                            value={data.title}
-                        />
-                        <input
-                            type="text"
-                            id="descriptioninput"
-                            name="description"
-                            placeholder="Description"
-                            onChange={updatedForm}
-                            value={data.description}
-                        />
-                        <input
-                            type="text"
-                            id="priceinput"
-                            name="price"
-                            placeholder="Price"
-                            onChange={updatedForm}
-                            value={data.price}
-                        />
-                        <div className="d-flex">
+                    <form className="formcp container-fluid" onSubmit={handleSubmit}>
+                        <div className="cover-input-cp d-flex justify-content-center align-items-center">
+                            <input
+                                type="text"
+                                id="titleinput"
+                                name="title"
+                                placeholder="Title"
+                                onChange={updatedForm}
+                                value={data.title}
+                            />
+                        </div>
+
+                        <div className="cover-input-cp-desk-p d-flex justify-content-center align-items-center">
+                            <textarea
+                                
+                                type="text"
+                                id="descriptioninput"
+                                name="description"
+                                placeholder="Description"
+                                onChange={updatedForm}
+                                value={data.description}
+                            />
+                        </div>
+                        <div className="cover-input-cp d-flex justify-content-center align-items-center">
+                            <input
+                                type="text"
+                                id="priceinput"
+                                name="price"
+                                placeholder="Price"
+                                onChange={updatedForm}
+                                value={data.price}
+                            />
+                        </div>
+                        <div className="cover-input-cp-file d-flex justify-content-center align-items-center">
+                        
+                        <div className="d-flex " style={{
+                            width: '40%',
+                        }}>
                             <input
                                 type="file"
                                 id="imginput"
@@ -103,15 +121,27 @@ const FormCreateProject = () => {
                                 onChange={handleImageChange}
                             />
                         </div>
-                        <button className="submitButton" type="submit">
-                            Submit
-                        </button>
+
+                        </div>
+                        <div className="cover-input-cp-file d-flex justify-content-center align-items-center">
+                            <div className=" d-flex justify-content-start align-items-center " style={{
+                                width: '40%',
+                            
+                            }}>
+
+                                <button className="submitButton btn-findap text-light" type="submit">
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
                     </form>
                 </div>
             
 
 
 
+            </div>
+                <Footer />
             </div>
         </>
     );

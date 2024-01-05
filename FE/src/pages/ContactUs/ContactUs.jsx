@@ -15,8 +15,11 @@ const ContactUs =() => {
         <div>
             <div className ="container-fluid text-center">
                  <h1 className="contactus">Contact Us</h1>
-                 <p className="csinfo">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et <br />
-                 dolore magna aliqua.</p>
+                 <p className="csinfo"> 
+                     contact us for further information regarding products and
+                    our services as well as to provide suggestions<br/> and criticism, we will respond as quickly as possible
+
+                 </p>
             </div>
                 <div className="row justify-content-center mt-5" >
 
@@ -28,7 +31,7 @@ const ContactUs =() => {
                         </div>
                         <div className="col-6 pt-3 cstxt">
                             <h2>Telephone</h2>
-                            <p>394-091-3312</p>
+                            <p>0896-3727-8577</p>
                         </div>
                     </div>
 
@@ -40,7 +43,7 @@ const ContactUs =() => {
                         </div>
                         <div className="col-6 pt-3 cstxt">
                             <h2>Mail</h2>
-                            <p>support@crowdlab.com</p>
+                            <p>supportCrowdlab@gmail.com</p>
                         </div>
                     </div>
 
@@ -53,8 +56,7 @@ const ContactUs =() => {
                         </div>
                         <div className="col-6 pt-3 cstxt">
                             <h2>Our Address</h2>
-                            <p>832  Thompson Drive, San Fransisco
-                                CA 94107, United States</p>
+                            <p>sukabirus samping warteg,kost88,Bandung</p>
                         </div>
                     </div>
 
