@@ -24,6 +24,12 @@ const Navbar = () => {
     }
     , [ dataUser ]);
 
+    // fungsi logout
+    const logout = () => {
+        localStorage.removeItem('user');
+        window.location.href = '/login';
+    }
+
 
     return(
         <>
@@ -41,12 +47,16 @@ const Navbar = () => {
                     <li className="mx-3 set-li-nsv"><Link to={"/about"} style={{color:'#1b1b1b',fontWeight:'600',fontSize:'20px'}}>About</Link></li>
                     <li className="mx-3 set-li-nsv"><Link to={"/ContactUs"} style={{color:'#1b1b1b',fontWeight:'600',fontSize:'20px'}}>Contact Us</Link></li>
                 </div>
-                <div className="col-2 ">
+                <div className="col-2 d-flex gap-4 ">
                     <Link to={`/profile/${user?._id}`}>
                         <button className="btn-pp-nav text-center text-light my-3">
                             Profile
                         </button>
                     </Link>
+                    {/* logout */}
+                    <button className="btn-pp-nav text-center text-light my-3" onClick={logout}>
+                        Logout
+                    </button>
                 </div>
             </div>
         </div>

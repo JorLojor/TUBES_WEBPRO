@@ -35,8 +35,10 @@ a{
     align-items: center;
 }
 .btn-pp-nav{
-    width: 175px;
+    width: fit-content;
     height: 50px;
+    padding-left: 30px;
+    padding-right: 30px;
     flex-shrink: 0;
     border-radius: 4px;
     background: #3252DF;

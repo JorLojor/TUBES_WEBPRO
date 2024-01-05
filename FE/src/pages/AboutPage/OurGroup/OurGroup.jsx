@@ -1,5 +1,5 @@
 import './OurGroup.css';
-// img
+// import gambar
 import hanip from '../../../assets/hanip.png';
 import jorss from '../../../assets/jorss.png';
 import geo from '../../../assets/geo.png';
