@@ -175,26 +175,21 @@ exports.TanamModal = async (req, res) => {
 
 exports.getProjectsByPemodal = async (req, res) => {
     try {
-        const { pemodalId } = req.params;
+        const { userId } = req.params;
 
-        // Validasi apakah pemodalId adalah format ObjectId yang valid
-        if (!mongoose.Types.ObjectId.isValid(pemodalId)) {
-            return res.status(400).json({ success: false, message: 'Invalid pemodalId format' });
+        const dataUser = await User.findById(userId).populate('TanamModal');
+        if (!dataUser) {
+            return res.status(404).json({ success: false, message: 'User tidak ditemukan' });
+        }
+        
+
+        const dataUserTanamModal = await PenanamModal.findById(dataUser.TanamModal).populate('project');
+
+        if (!dataUserTanamModal) {
+            return res.status(404).json({ success: false, message: 'User TanamModal tidak ditemukan' });
         }
 
-        // Cari user pemodal berdasarkan pemodalId
-        const pemodal = await User.findById(pemodalId);
-        if (!pemodal) {
-            return res.status(404).json({ success: false, message: 'User pemodal not found' });
-        }
-
-        // Cari proyek yang memiliki pemodalId dalam array pemodal
-        const projects = await Project.find({ pemodal: pemodalId });
-        if (!projects || projects.length === 0) {
-            return res.status(404).json({ success: false, message: 'No projects found for the specified pemodalId' });
-        }
-
-        res.status(200).json({ success: true, projects });
+        res.status(200).json({ success: true, dataUserTanamModal });
     } catch (error) {
         console.error(error);
         res.status(500).json({ success: false, message: 'Internal Server Error' });

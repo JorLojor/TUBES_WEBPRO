@@ -7,8 +7,7 @@ const YourProject = ({idUser}) => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        // Ambil data dari API, misalnya menggunakan fetch atau axios
-        // Gantilah URL_API sesuai dengan endpoint API Anda
+        
         const URL_API = `http://localhost:3777/api/project/myproject/${idUser}`;
 
         fetch(URL_API)

@@ -8,6 +8,7 @@ import imgprofile from "../../assets/image306.png";
 import FormLengkapiProfile from "../../components/formLengkapiProfile/FormLengkapiProfile"; 
 import YourProject from '../../components/yourProject/YourProject';
 import Footer from "../../components/footer/Footer";
+import YourInvest from '../../components/yourInvest/YourInvest';
 import FormCreateProject from '../../components/FromCreateProject/FormCreateProject';
 import img1 from '../../assets/m3.png'
 import img2 from '../../assets/sub-querry.png'
@@ -164,34 +165,7 @@ const Profile = () => {
                 <div className=" pt-5 mt-5 justify-content-around">
                     <h3 className='ms-1'>Your investation project</h3>
 
-                    <ul >
-                        <li className='mt-5 row listproject justify-content-between px-5 my-3'>
-                            <div className='col-3 d-flex'>
-                                <img src={imgprofile} alt="" style={{ width: "60px", height: "60px", borderRadius: "10px" }} className="mt-2 me-2" />
-                                <p className='mt-4'> exampp features</p>
-                            </div>
-                            <div className='col-3 text-center'>
-                                <p className='mt-4'>si entong </p>
-                            </div>
-                            <div className='col-3 text-center'>
-                                <p className='mt-4'>5000000</p>
-                            </div>
-                            <div className='col-3 text-end'>
-                                <button className='mt-3' style={{
-                                    backgroundColor: '#F5F5FB',
-                                    border: 'none',
-                                    borderRadius: '10px',
-                                    width: '100px',
-                                    height: '40px',
-                                    color: '#A8A8A8'
-                                }}>
-                                    {">"}
-                                </button>
-                            </div>
-
-                        </li>
-                        
-                    </ul>
+                    <YourInvest idUser={id} />
 
                 </div>
 
